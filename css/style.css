@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;700&display=swap");
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header .logo {
+  margin: 0;
+  font-family: "DM Sans";
+  font-weight: bolder;
+  font-size: 36px;
+  color: #d04f4f;
+}
+
+/*# sourceMappingURL=style.css.map */
