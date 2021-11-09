@@ -1,0 +1,14 @@
+header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	.logo {
+		margin: 0;
+		font-family: 'DM Sans';
+		font-weight: bolder;
+		font-size: 36px;
+		color: $couleur-primaire;
+	}
+}
+
