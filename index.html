@@ -17,12 +17,45 @@
         <title> Les Petits Plats</title>
     </head>
     <body>
-			<header>
-				<a><img src="./images/logo/Logo.svg" alt="logo Les Petits Plats"></a>
-				<p class="logo">Les petits plats</p>
-			</header>
-			<footer>
+		<header>
+			<a><img src="./images/logo/Logo.svg" alt="logo Les Petits Plats"></a>
+			<p class="logo">Les petits plats</p>
+		</header>
+            <form>
+                <input type="text" name="barre-recherche" minlength="3" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+                <i class="fas fa-search fa-2x"></i>
+                <div class="groupe-filtre">
+                    <a>
+                        <div class="filtre filtre--ingredient"> 
+                            <p> Ingredients </p>
+                            <div class="fleche">
+                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-up"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <a>
+                        <div class="filtre filtre--appareil"> 
+                            <p> Appareil </p>
+                            <div class="fleche">
+                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-up"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <a>
+                        <div class="filtre filtre--ustensile"> 
+                            <p> Ustensiles </p>
+                            <div class="fleche">
+                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-up"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </form>
+		<footer>
 
-			</footer>
-		</body>
+		</footer>
+	</body>
 </html>

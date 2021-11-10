@@ -1,0 +1,45 @@
+.groupe-filtre {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    font-family: 'Lato';
+    font-weight: bolder;
+    font-size: 18px;
+}
+.filtre{
+    padding: 10px;
+    width: 200px;
+    height: 40px;
+    color: white;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    .fleche{
+        .fa-chevron-up {
+            display: none;
+        }
+        .fa-chevron-down {
+            display: initial;
+        }
+        &:active{
+            .fa-chevron-up {
+                display: initial;
+            }
+            .fa-chevron-down {
+                display: none;
+            }
+        }
+    }
+    &--ingredient{
+        background-color: $couleur-filtre-bleu;
+    }
+    &--appareil{
+        background-color: $couleur-filtre-vert;
+    }
+    &--ustensile{
+        background-color: $couleur-filtre-rouge;
+    }
+}

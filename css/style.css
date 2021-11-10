@@ -1,6 +1,49 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;700&display=swap");
+.groupe-filtre {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  font-family: "Lato";
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.filtre {
+  padding: 10px;
+  width: 200px;
+  height: 40px;
+  color: white;
+  margin-right: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+.filtre .fleche .fa-chevron-up {
+  display: none;
+}
+.filtre .fleche .fa-chevron-down {
+  display: initial;
+}
+.filtre .fleche:active .fa-chevron-up {
+  display: initial;
+}
+.filtre .fleche:active .fa-chevron-down {
+  display: none;
+}
+.filtre--ingredient {
+  background-color: #3282f7;
+}
+.filtre--appareil {
+  background-color: #68d9a4;
+}
+.filtre--ustensile {
+  background-color: #ed6454;
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -13,6 +56,23 @@ header .logo {
   font-weight: bolder;
   font-size: 36px;
   color: #d04f4f;
+}
+
+input {
+  margin-top: 20px;
+  padding: 10px 0px;
+  width: 100%;
+  height: 40px;
+  background-color: #e7e7e7;
+  border: none;
+  position: relative;
+  border-radius: 5px;
+}
+
+.fa-search {
+  position: absolute;
+  right: 20px;
+  top: 135px;
 }
 
 /*# sourceMappingURL=style.css.map */
