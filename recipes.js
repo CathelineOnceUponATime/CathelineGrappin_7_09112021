@@ -1,4 +1,4 @@
-const recipes = // eslint-disable-line no-unused-vars
+export const recipes = // eslint-disable-line no-unused-vars
 [
   {
     id: 1,
@@ -55,7 +55,7 @@ const recipes = // eslint-disable-line no-unused-vars
       },
       {
         ingredient: 'Carotte',
-        quantite: 1
+        quantity: 1
       },
       {
         ingredient: 'Citron Vert',
@@ -183,7 +183,7 @@ const recipes = // eslint-disable-line no-unused-vars
       {
         ingredient: 'Moutarde de Dijon',
         quantity: 1,
-        unite: 'cuillères à soupe'
+        unit: 'cuillères à soupe'
       }
     ],
     time: 45,

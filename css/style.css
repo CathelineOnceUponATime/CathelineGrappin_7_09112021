@@ -44,6 +44,51 @@
   background-color: #ed6454;
 }
 
+#les-recettes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.recette {
+  margin: 20px 20px 20px 0px;
+  width: 30%;
+  border-radius: 5px;
+}
+.recette--photo {
+  background-color: #c7bebe;
+  height: 178px;
+  border-radius: 5px 5px 0px 0px;
+}
+.recette--detail {
+  background-color: #e7e7e7;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0px 0px 5px 5px;
+}
+.recette--detail .recette-nom-temps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.recette--detail .recette-ingredient-quantite-unite-description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.recette--detail .recette-ingredient-quantite-unite-description .recette-ingredient-quantite-unite {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+}
+.recette--detail .recette-ingredient-quantite-unite-description .recette-description {
+  margin-left: 20px;
+  width: 80%;
+}
+
 header {
   display: flex;
   flex-direction: column;

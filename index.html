@@ -10,7 +10,7 @@
         <link rel="preload" href="./css/style.css" as="style" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="./css/style.css" />
-
+       
         <meta name="description" content="Site Les Petits Plats - P7 - Formation Dev Front-End">
         <meta name="author" content="Catheline GRAPPIN">
 
@@ -22,7 +22,7 @@
 			<p class="logo">Les petits plats</p>
 		</header>
             <form>
-                <input type="text" name="barre-recherche" minlength="3" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+                <input type="text" id="barreRecherche" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
                 <i class="fas fa-search fa-2x"></i>
                 <div class="groupe-filtre">
                     <a>
@@ -54,8 +54,29 @@
                     </a>
                 </div>
             </form>
+            <div id="les-recettes">
+                <div class="recette">
+                    <div class="recette--photo"> </div>
+                    <div class="recette--detail">
+                        <div class="recette-nom-temps">
+                            <p class="recette-nom-temps--nom"> Limonade de Coco </p>
+
+                            <p class="recette-nom-temps--temps"> <i class="far fa-clock"></i> 10 min</p>
+                        </div>
+                        <div class="recette-ingredient-quantite-unite-description">
+                            <div class="recette-ingredient-quantite-unite">
+                                <p class="recette--ingredient"> Lait de coco</p>
+                                <p class="recette--quantite"> 400 </p>
+                                <p class="recette--unite"> ml </p>
+                            </div>
+                            <p class="recette-description"> Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		<footer>
 
 		</footer>
+        <script type="module" src="./index.js"></script>
 	</body>
 </html>
