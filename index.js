@@ -1,7 +1,7 @@
 import { recipes } from './recipes.js'
 const tRecettes = recipes
 
-class ingredient {
+class Ingredient {
   constructor (ingredient, quantity, unit) {
     this.ingredient = ingredient
     this.quantity = quantity
@@ -9,7 +9,7 @@ class ingredient {
   }
 }
 class Recette {
-  constructor (id, name, servings, ingredients, time, description, appliance, ustensils, bAffiche) {
+  constructor (id, name, servings, time, description, bAffiche) {
     this.id = id
     this.name = name
     this.servings = servings
@@ -18,8 +18,46 @@ class Recette {
     this.bAffiche = bAffiche
   }
 }
+const tUstensils = []
+const tIngredients = []
+const tAppareils = []
+
+function remplirUstensils () {
+  for (let i = 0; i < tRecettes.length; i++) {
+    for (let j = 0; j < tRecettes[i].ustensils.length; j++) {
+      if (!tUstensils.includes(tRecettes[i].ustensils[j].toLowerCase())) {
+        tUstensils.push(tRecettes[i].ustensils[j].toLowerCase())
+      }
+    }
+  }
+}
+
+function remplirIngredients () {
+  for (let i = 0; i < tRecettes.length; i++) {
+    for (let j = 0; j < tRecettes[i].ingredients.length; j++) {
+      if (!tIngredients.includes(tRecettes[i].ingredients[j].ingredient.toLowerCase())) {
+        tIngredients.push(tRecettes[i].ingredients[j].ingredient.toLowerCase())
+      }
+    }
+  }
+}
+
+function remplirAppareils () {
+  for (let i = 0; i < tRecettes.length; i++) {
+    if (!tAppareils.includes(tRecettes[i].appliance.toLowerCase())) {
+      tAppareils.push(tRecettes[i].appliance.toLowerCase())
+    }
+  }
+}
+
+remplirUstensils()
+//remplirIngredients()
+remplirAppareils()
+
 function rechercheRecette (pRecherche) {
+  remplirIngredients()
   let bIngredient = false
+  let recetteDejaAffiche
   let eltRecherche = pRecherche
   eltRecherche = eltRecherche.toLowerCase()
   if (eltRecherche.length > 2) {
@@ -31,7 +69,10 @@ function rechercheRecette (pRecherche) {
       }
       if (bIngredient) {
         bIngredient = false
-        creerCarte(tRecettes[i].id)
+        recetteDejaAffiche = document.getElementById(tRecettes[i].id)
+        if (recetteDejaAffiche === null) {
+          creerCarte(tRecettes[i].id)
+        }
       }
     }
   }
@@ -42,7 +83,7 @@ document.getElementById('barreRecherche').addEventListener('input', function (e)
 
 function creerCarte (pId) {
   const recetteCourante = new Recette()
-  const tIngredient = []
+  const tIngredientCourant = []
   let ingredientCourant
   for (let i = 0; i < tRecettes.length; i++) {
     if (tRecettes[i].id === pId) {
@@ -51,11 +92,15 @@ function creerCarte (pId) {
       recetteCourante.time = tRecettes[i].time
       recetteCourante.description = tRecettes[i].description
       for (let j = 0; j < tRecettes[i].ingredients.length; j++) {
-        ingredientCourant = new ingredient()
+        ingredientCourant = new Ingredient()
         ingredientCourant.ingredient = tRecettes[i].ingredients[j].ingredient
         ingredientCourant.quantity = tRecettes[i].ingredients[j].quantity
-        ingredientCourant.unit = tRecettes[i].ingredients[j].unit?' '
-        tIngredient.push(ingredientCourant)
+        if (tRecettes[i].ingredients[j].unit === undefined) {
+          ingredientCourant.unit = ''
+        } else {
+          ingredientCourant.unit = tRecettes[i].ingredients[j].unit
+        }
+        tIngredientCourant.push(ingredientCourant)
       }
       break
     }
@@ -93,7 +138,7 @@ function creerCarte (pId) {
   // Création p Temps de la recette
   const recetteTemps = document.createElement('p')
   recetteTemps.classList.add('recette-nom-temps--temps')
-  recetteTemps.innerHTML = recetteCourante.time + ' min'
+  recetteTemps.innerHTML = '<i class="far fa-clock"></i> ' + recetteCourante.time + ' min'
   recetteNomTemps.appendChild(recetteTemps)
 
   // Création div recette ingrédient description
@@ -111,9 +156,28 @@ function creerCarte (pId) {
   recetteDescription.classList.add('recette-description')
   recetteDescription.innerHTML = recetteCourante.description
   recetteIngredientDescription.appendChild(recetteDescription)
+  for (let i = 0; i < tIngredientCourant.length; i++) {
+    ingredientCourant = new Ingredient()
+    ingredientCourant.ingredient = tIngredientCourant[i].ingredient
+    if (tIngredientCourant[i].quantity !== undefined) {
+      ingredientCourant.quantity = tIngredientCourant[i].quantity
+    }
+    if (tIngredientCourant[i].unit !== undefined) {
+      ingredientCourant.unit = tIngredientCourant[i].unit
+    }
+    creerIngredient(ingredientCourant, recetteIngredient)
+  }
 }
 
-function creerIngredient (pIdRecette) { // eslint-disable-line no-unused-vars
-  const idRecette = document.getElementById(pIdRecette)
-  
+function creerIngredient (pIngredientCourant, pDivAjout) { // eslint-disable-line no-unused-vars
+  const recetteIngredient = document.createElement('p')
+  recetteIngredient.classList.add('recette--detail--ingredient')
+  recetteIngredient.innerHTML = '<b>' + pIngredientCourant.ingredient
+  if (pIngredientCourant.quantity !== undefined) {
+    recetteIngredient.innerHTML += ' : </b>' + pIngredientCourant.quantity
+  }
+  if (pIngredientCourant.unit !== undefined) {
+    recetteIngredient.innerHTML += ' ' + pIngredientCourant.unit
+  }
+  pDivAjout.appendChild(recetteIngredient)
 }

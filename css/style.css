@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 .groupe-filtre {
   display: flex;
   flex-direction: row;
@@ -52,6 +52,7 @@
 }
 
 .recette {
+  font-family: "Lato";
   margin: 20px 20px 20px 0px;
   width: 30%;
   border-radius: 5px;
@@ -68,10 +69,16 @@
   flex-direction: column;
   border-radius: 0px 0px 5px 5px;
 }
+.recette--detail--ingredient {
+  margin: 0;
+}
 .recette--detail .recette-nom-temps {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.recette--detail .recette-nom-temps--temps {
+  font-weight: bolder;
 }
 .recette--detail .recette-ingredient-quantite-unite-description {
   display: flex;
@@ -81,12 +88,14 @@
 }
 .recette--detail .recette-ingredient-quantite-unite-description .recette-ingredient-quantite-unite {
   display: flex;
-  flex-direction: row;
-  width: 20%;
+  flex-direction: column;
+  width: 50%;
 }
 .recette--detail .recette-ingredient-quantite-unite-description .recette-description {
+  font-family: "Roboto";
+  margin: 0;
   margin-left: 20px;
-  width: 80%;
+  width: 50%;
 }
 
 header {

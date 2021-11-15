@@ -5,6 +5,7 @@
     width: 100%;
 }
 .recette{
+    font-family: 'Lato';
     margin: 20px 20px 20px 0px;
     width: 30%;
     border-radius: 5px;
@@ -19,10 +20,16 @@
         display: flex;
         flex-direction: column;
         border-radius: 0px 0px 5px 5px;
+        &--ingredient{
+            margin: 0;
+        }
         .recette-nom-temps{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            &--temps{
+                font-weight: bolder;
+            }
         }
         .recette-ingredient-quantite-unite-description{
             display: flex;
@@ -31,12 +38,14 @@
             width: 100%;
             .recette-ingredient-quantite-unite{
                 display: flex;
-                flex-direction: row;
-                width: 20%;
+                flex-direction: column;
+                width: 50%;
             }
             .recette-description {
+                font-family: 'Roboto';
+                margin: 0;
                 margin-left: 20px;
-                width: 80%;
+                width: 50%;
             }
         }
     }
