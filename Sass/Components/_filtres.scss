@@ -35,11 +35,20 @@
     }
     &--ingredient{
         background-color: $couleur-filtre-bleu;
+        input {
+            display: none;
+        }
     }
     &--appareil{
         background-color: $couleur-filtre-vert;
+        input {
+            display: none;
+        }
     }
     &--ustensile{
         background-color: $couleur-filtre-rouge;
+        input {
+            display: none;
+        }
     }
 }

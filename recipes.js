@@ -46,15 +46,15 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Concombre',
+        ingredient: 'Concombres',
         quantity: 1
       },
       {
-        ingredient: 'Tomate',
+        ingredient: 'Tomates',
         quantity: 2
       },
       {
-        ingredient: 'Carotte',
+        ingredient: 'Carottes',
         quantity: 1
       },
       {
@@ -88,12 +88,12 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'ml'
       },
       {
-        ingredient: 'Coulis de tomate',
+        ingredient: 'Coulis de tomates',
         quantity: 25,
         unit: 'cl'
       },
       {
-        ingredient: 'Oignon',
+        ingredient: 'Oignons',
         quantity: 1
       },
       {
@@ -107,7 +107,7 @@ export const recipes = // eslint-disable-line no-unused-vars
       }
     ],
     time: 80,
-    description: 'Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l\'huile d\'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l\'eau. Au bout de 30 minutes, ajouter le coulis de tomate, le lait de coco ainsi que le poivron et l\'oignon découpés en morceaux. Laisser cuisiner 30 minutes de plus. Servir avec du riz',
+    description: 'Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l\'huile d\'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l\'eau. Au bout de 30 minutes, ajouter le coulis de tomates, le lait de coco ainsi que le poivron et l\'oignon découpés en morceaux. Laisser cuisiner 30 minutes de plus. Servir avec du riz',
     appliance: 'Cocotte',
     ustensils: ['couteau']
   },
@@ -128,7 +128,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Tomate',
+        ingredient: 'Tomates',
         quantity: 2
       },
       {
@@ -167,16 +167,16 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Tomate',
+        ingredient: 'Tomates',
         quantity: 2
       },
       {
-        ingredient: 'Crème fraiche',
+        ingredient: 'Crème fraîche',
         quantity: 2,
         unit: 'cuillères à soupe'
       },
       {
-        ingredient: 'gruyère râpé',
+        ingredient: 'gruyère',
         quantity: 100,
         unit: 'grammes'
       },
@@ -187,7 +187,7 @@ export const recipes = // eslint-disable-line no-unused-vars
       }
     ],
     time: 45,
-    description: 'Etaler la pâte feuilleté aux dimensions du moule, étaler la moutarde sur la pâte feuilleté, ajouter le thon. Découper les tomates en rondelles et les poser sur le poisson, ajouter un peu de crème fraiche sur toute la tarte et recouvrez de gruyère râpé. Cuire au four 30 minutes',
+    description: 'Etaler la pâte feuilleté aux dimensions du moule, étaler la moutarde sur la pâte feuilleté, ajouter le thon. Découper les tomates en rondelles et les poser sur le poisson, ajouter un peu de Crème fraîche sur toute la tarte et recouvrez de gruyère râpé. Cuire au four 30 minutes',
     appliance: 'Four',
     ustensils: ['moule à tarte', 'râpe à fromage', 'couteau']
   },
@@ -202,15 +202,15 @@ export const recipes = // eslint-disable-line no-unused-vars
         quantity: 1
       },
       {
-        ingredient: 'Pomme',
+        ingredient: 'Pommes',
         quantity: 3
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: '2'
       },
       {
-        ingredient: 'Crème fraiche',
+        ingredient: 'Crème fraîche',
         quantity: 25,
         unit: 'cl'
       },
@@ -227,7 +227,7 @@ export const recipes = // eslint-disable-line no-unused-vars
       }
     ],
     time: 50,
-    description: 'Commencez par mélanger les oeufs le sucre et le sucre vanillé dans un saladier, découper les pommes en tranches, ajouter la crème fraiche aux oeufs. Une fois que tout est pret, étalez la tarte dans le moule. N\'oubliez pas de piquer le fond avec une fourchette avant depositionner les pommes sur la tarte. Finallement verser la préparation à base d\'oeufs et de crême fraiche. Laisser cuire au four pendant 30 minutes',
+    description: 'Commencez par mélanger les oeufs le sucre et le sucre vanillé dans un saladier, découper les pommes en tranches, ajouter la Crème fraîche aux oeufs. Une fois que tout est pret, étalez la tarte dans le moule. N\'oubliez pas de piquer le fond avec une fourchette avant depositionner les pommes sur la tarte. Finallement verser la préparation à base d\'oeufs et de crême fraiche. Laisser cuire au four pendant 30 minutes',
     appliance: 'Four',
     ustensils: ['moule à tarte', 'saladier', 'fourchette']
   },
@@ -257,7 +257,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Fraise',
+        ingredient: 'Fraises',
         quantity: 6
       }
     ],
@@ -288,7 +288,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 2
       },
       {
@@ -315,7 +315,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Concombre',
+        ingredient: 'Concombres',
         quantity: 1
       },
       {
@@ -327,7 +327,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Vinaigre Balsamic'
+        ingredient: 'Vinaigre Balsamique'
       },
       {
         ingredient: 'Huile d\'olive'
@@ -337,7 +337,7 @@ export const recipes = // eslint-disable-line no-unused-vars
       }
     ],
     time: 15,
-    description: 'Peler le concombre le couper 2, retirer les pépins. Couper les olives en morceaux, ainsi que le fromage de chèvre. Ajouter le basilic ainsi que le vinaigre balsamic et l\'huile d\'olives à votre gout.',
+    description: 'Peler le concombre le couper 2, retirer les pépins. Couper les olives en morceaux, ainsi que le fromage de chèvre. Ajouter le basilic ainsi que le vinaigre balsamique et l\'huile d\'olive à votre gout.',
     appliance: 'Saladier',
     ustensils: ['cuillère en bois', 'couteau']
   },
@@ -362,7 +362,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'tranches'
       },
       {
-        ingredient: 'Oignon',
+        ingredient: 'Oignons',
         quantity: 300,
         unit: 'grammes'
       },
@@ -501,7 +501,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 1
 
       },
@@ -511,7 +511,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oignon',
+        ingredient: 'Oignons',
         quantity: 1
       },
       {
@@ -524,7 +524,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     time: 100,
     description: 'Mélanger la farine et les oeufs, faire fondre 25 grammes de beurre et ajouter à la pâte. Ajouter du sel. Laisser reposer 1 heure. Faire les galettes et laisser refroidire. Faire chauffer les saucisses avec du beurre et l\'oignon. Enrouler les saucisses dans les crêpes avec une partie du fromage. Mettre le reste du fromage à raclette par dessus les crêpes. Passer four pendant 20 minutes',
     appliance: 'Four',
-    ustensils: ['poelle à frire', 'couteau']
+    ustensils: ['poêle à frire', 'couteau']
   },
   {
     id: 15,
@@ -533,7 +533,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 3
       },
       {
@@ -557,13 +557,13 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Banane',
+        ingredient: 'Bananes',
         quantity: 4
       }
     ],
     time: 60,
     description: 'Mélangez dans un saladier, la farine, les oeufs, et le lait. Battez jusqu\'à avoir une masse homogène. Pendant ce temps faites fondre le beurre et ajoutez en une partie à la pâte à crêpes. Faire fondre le chocolat ( avec le reste du beurre salé ). Lorsque vous chauffez les crêpes. Ajouter le chocolat fondu et les bananes coupées en rondelles. Ajoutez une touche de chantilly pour les gourmands',
-    appliance: 'Poële à crêpe',
+    appliance: 'Poêle à crêpe',
     ustensils: ['saladier', 'louche', 'cuillère en bois']
   },
   {
@@ -573,7 +573,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Tomate',
+        ingredient: 'Tomates',
         quantity: 500,
         unit: 'grammes'
       },
@@ -593,7 +593,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'tiges'
       },
       {
-        ingredient: 'huile d\'olives',
+        ingredient: 'huile d\'olive',
         quantity: 2,
         unit: 'cuillère à soupe'
       }
@@ -610,7 +610,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Fraise',
+        ingredient: 'Fraises',
         quantity: 500,
         unit: 'grammes'
       },
@@ -669,11 +669,11 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Kiwi',
+        ingredient: 'Kiwis',
         quantity: 4
       },
       {
-        ingredient: 'Citron',
+        ingredient: 'Citrons',
         quantity: 1
       },
       {
@@ -687,7 +687,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Banane',
+        ingredient: 'Bananes',
         quantity: 1
       }
     ],
@@ -713,7 +713,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Crème fraiche',
+        ingredient: 'Crème fraîche',
         quantity: 200,
         unit: 'grammes'
       },
@@ -745,11 +745,11 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oignon',
+        ingredient: 'Oignons',
         quantity: 2
       },
       {
-        ingredient: 'Coulis de tomate',
+        ingredient: 'Coulis de tomates',
         quantity: 300,
         unit: 'grammes'
       },
@@ -764,14 +764,14 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'cl'
       },
       {
-        ingredient: 'Crème Fraiche',
+        ingredient: 'Crème fraîche',
         quantity: 1,
         unit: 'cuillères à soupe'
       }
     ],
     time: 30,
-    description: 'Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraiche à la viande hachée. Serivir.',
-    appliance: 'Casserolle.',
+    description: 'Cuisiner la viande hachée dans une poêle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la Crème fraîche à la viande hachée. Serivir.',
+    appliance: 'Casserolle',
     ustensils: ['Cuillère en bois', 'louche', 'couteau']
   },
   {
@@ -796,7 +796,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 4
       },
       {
@@ -832,7 +832,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 3
       },
       {
@@ -868,11 +868,11 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Tomate',
+        ingredient: 'Tomates',
         quantity: 1
       },
       {
-        ingredient: 'Concombre',
+        ingredient: 'Concombres',
         quantity: 0.5
       },
       {
@@ -918,7 +918,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 1
       }
     ],
@@ -934,7 +934,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Tomate',
+        ingredient: 'Tomates',
         quantity: 6
       },
       {
@@ -942,10 +942,10 @@ export const recipes = // eslint-disable-line no-unused-vars
         quantity: 1
       },
       {
-        ingredient: 'Huile d\'olives'
+        ingredient: 'Huile d\'olive'
       },
       {
-        ingredient: 'Oignon',
+        ingredient: 'Oignons',
         quantity: 1
       },
       {
@@ -970,7 +970,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         quantity: 2
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 1
       },
       {
@@ -1001,7 +1001,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Poireau',
+        ingredient: 'Poireaux',
         quantity: 3
       },
       {
@@ -1020,7 +1020,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Crême fraîche',
+        ingredient: 'Crème fraîche',
         quantity: 10,
         unit: 'cl'
       }
@@ -1047,7 +1047,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'gousses'
       },
       {
-        ingredient: 'Citron',
+        ingredient: 'Citrons',
         quantity: 2
       },
       {
@@ -1074,7 +1074,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oignon',
+        ingredient: 'Oignons',
         quantity: 1
       },
       {
@@ -1095,7 +1095,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Carotte',
+        ingredient: 'Carottes',
         quantity: 2
       },
       {
@@ -1108,7 +1108,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Petits poids',
+        ingredient: 'Petits pois',
         quantity: 100,
         unit: 'grammes'
       },
@@ -1119,8 +1119,8 @@ export const recipes = // eslint-disable-line no-unused-vars
       }
     ],
     time: 60,
-    description: 'Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d\'eau. Ajouter les petit poids et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thyms et laurier',
-    appliance: 'Poële',
+    description: 'Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d\'eau. Ajouter les petit pois et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thym et laurier',
+    appliance: 'Poêle',
     ustensils: ['Couteau', 'économe']
   },
   {
@@ -1221,7 +1221,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         ingredient: 'Huile d\'olive'
       },
       {
-        ingredient: 'Orange',
+        ingredient: 'Oranges',
         quantity: 1
       }
     ],
@@ -1237,7 +1237,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Carotte',
+        ingredient: 'Carottes',
         quantity: 6
       },
       {
@@ -1277,7 +1277,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Courgette',
+        ingredient: 'Courgettes',
         quantity: 2
       },
       {
@@ -1317,7 +1317,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Courgette',
+        ingredient: 'Courgettes',
         quantity: 2
       },
       {
@@ -1326,12 +1326,12 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Huile d\'olives',
+        ingredient: 'Huile d\'olive',
         quantity: 25,
         unit: 'cl'
       },
       {
-        ingredient: 'Oignon',
+        ingredient: 'Oignons',
         quantity: 1
       },
       {
@@ -1349,7 +1349,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     time: 60,
     description: 'Couper les courgettes dans le sens de la longueur. Vider les courgette dans un saladier. Réserver.Faire revenir la chair des courgettes dans 25cl d\'huile d\'olive. Ajouter l\'oignon puis la viande hachée. Mettre la farce dans les courgettes. Ajouter le coulis de tomates. Mettre au four pendant 30 minutes. Avant la fin de la cuisson ajouter le fromage rapé',
     appliance: 'Four',
-    ustensils: ['couteau', 'cuillère en bois', 'Poelle à frire']
+    ustensils: ['couteau', 'cuillère en bois', 'Poêle à frire']
   },
   {
     id: 38,
@@ -1368,7 +1368,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'cl'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 3
       },
       {
@@ -1389,7 +1389,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Pomme',
+        ingredient: 'Pommes',
         quantity: 2
       },
       {
@@ -1451,7 +1451,7 @@ export const recipes = // eslint-disable-line no-unused-vars
     ingredients:
     [
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 3
       },
       {
@@ -1482,7 +1482,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 3
       },
       {
@@ -1522,11 +1522,11 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 3
       },
       {
-        ingredient: 'Citron'
+        ingredient: 'Citrons'
       }
     ],
     time: 50,
@@ -1583,7 +1583,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'cl'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 2
       },
       {
@@ -1624,7 +1624,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'sachets'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 4
       },
       {
@@ -1671,7 +1671,7 @@ export const recipes = // eslint-disable-line no-unused-vars
       }
     ],
     time: 5,
-    description: 'Mélanger le jus de citron avec le sucre et la mascarpone. Ajouter la crème fraiche. Mélanger le tout et mettre au congélateur pendant 1 heure. Servir',
+    description: 'Mélanger le jus de citron avec le sucre et la mascarpone. Ajouter la Crème fraîche. Mélanger le tout et mettre au congélateur pendant 1 heure. Servir',
     appliance: 'Saladier',
     ustensils: ['fouet', 'verres', 'cuillère en bois']
   },
@@ -1726,7 +1726,7 @@ export const recipes = // eslint-disable-line no-unused-vars
         quantity: 3
       },
       {
-        ingredient: 'Mangue',
+        ingredient: 'Mangues',
         quantity: 1
       },
       {
@@ -1757,11 +1757,11 @@ export const recipes = // eslint-disable-line no-unused-vars
         unit: 'grammes'
       },
       {
-        ingredient: 'Oeuf',
+        ingredient: 'Oeufs',
         quantity: 6
       },
       {
-        ingredient: 'Poudre d\'amendes',
+        ingredient: 'Poudre d\'amande',
         quantity: 500,
         unit: 'grammes'
       },

@@ -51,11 +51,10 @@ function remplirAppareils () {
 }
 
 remplirUstensils()
-//remplirIngredients()
+remplirIngredients()
 remplirAppareils()
 
 function rechercheRecette (pRecherche) {
-  remplirIngredients()
   let bIngredient = false
   let recetteDejaAffiche
   let eltRecherche = pRecherche
@@ -80,7 +79,15 @@ function rechercheRecette (pRecherche) {
 document.getElementById('barreRecherche').addEventListener('input', function (e) {
   rechercheRecette(e.target.value)
 })
-
+document.getElementById('filtre--ingredient-id').addEventListener('click', function () {
+  const idFiltreIngredient = document.getElementById('filtre--ingredient-id')
+  const idPIngredients = document.getElementById('ingredients')
+  const idInputIngredient = document.getElementById('input-ingredient')
+  if (idPIngredients !== null) {
+    idFiltreIngredient.removeChild(idPIngredients)
+    idInputIngredient.style.display = 'initial'
+  }
+})
 function creerCarte (pId) {
   const recetteCourante = new Recette()
   const tIngredientCourant = []

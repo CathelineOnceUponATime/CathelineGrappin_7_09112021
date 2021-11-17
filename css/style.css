@@ -37,11 +37,20 @@
 .filtre--ingredient {
   background-color: #3282f7;
 }
+.filtre--ingredient input {
+  display: none;
+}
 .filtre--appareil {
   background-color: #68d9a4;
 }
+.filtre--appareil input {
+  display: none;
+}
 .filtre--ustensile {
   background-color: #ed6454;
+}
+.filtre--ustensile input {
+  display: none;
 }
 
 #les-recettes {
