@@ -62,7 +62,7 @@ function rechercheRecette (pRecherche) {
   if (eltRecherche.length > 2) {
     for (let i = 0; i < tRecettes.length; i++) {
       for (let j = 0; j < tRecettes[i].ingredients.length; j++) {
-        if ((tRecettes[i].name.toLowerCase().indexOf(eltRecherche) !== -1) || (tRecettes[i].ingredients[j].ingredient.toLowerCase().indexOf(eltRecherche) !== -1)) {
+        if ((tRecettes[i].name.toLowerCase().indexOf(eltRecherche) !== -1) || (tRecettes[i].ingredients[j].ingredient.toLowerCase().indexOf(eltRecherche) !== -1) || (tRecettes[i].description.toLowerCase().indexOf(eltRecherche) !== -1)) {
           bIngredient = true
         }
       }
@@ -79,14 +79,13 @@ function rechercheRecette (pRecherche) {
 document.getElementById('barreRecherche').addEventListener('input', function (e) {
   rechercheRecette(e.target.value)
 })
-document.getElementById('filtre--ingredient-id').addEventListener('click', function () {
-  const idFiltreIngredient = document.getElementById('filtre--ingredient-id')
-  const idPIngredients = document.getElementById('ingredients')
-  const idInputIngredient = document.getElementById('input-ingredient')
-  if (idPIngredients !== null) {
-    idFiltreIngredient.removeChild(idPIngredients)
-    idInputIngredient.style.display = 'initial'
-  }
+document.getElementById('btnIngredient').addEventListener('click', function () {
+  const idFiltreIngredient = document.getElementById('btnIngredient')
+  idFiltreIngredient.innerHTML = '<input type="text" class="input" id="inputIngredient" placeholder="Rechercher un ingrédient...">'
+})
+$('#collapseExample').on('hidden.bs.collapse', function () {
+  const idFiltreIngredient = document.getElementById('btnIngredient')
+  idFiltreIngredient.innerHTML = 'Ingrédients'
 })
 function creerCarte (pId) {
   const recetteCourante = new Recette()
@@ -176,12 +175,12 @@ function creerCarte (pId) {
   }
 }
 
-function creerIngredient (pIngredientCourant, pDivAjout) { // eslint-disable-line no-unused-vars
+function creerIngredient (pIngredientCourant, pDivAjout) {
   const recetteIngredient = document.createElement('p')
   recetteIngredient.classList.add('recette--detail--ingredient')
-  recetteIngredient.innerHTML = '<b>' + pIngredientCourant.ingredient
+  recetteIngredient.innerHTML = '<span class="font-weight-bold">' + pIngredientCourant.ingredient
   if (pIngredientCourant.quantity !== undefined) {
-    recetteIngredient.innerHTML += ' : </b>' + pIngredientCourant.quantity
+    recetteIngredient.innerHTML += ' : </span>' + pIngredientCourant.quantity
   }
   if (pIngredientCourant.unit !== undefined) {
     recetteIngredient.innerHTML += ' ' + pIngredientCourant.unit

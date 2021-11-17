@@ -52,3 +52,9 @@
         }
     }
 }
+.input {
+    background-color: $couleur-filtre-bleu;
+    &::placeholder {
+        color: white;
+    }
+}

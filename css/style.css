@@ -53,6 +53,13 @@
   display: none;
 }
 
+.input {
+  background-color: #3282f7;
+}
+.input::placeholder {
+  color: white;
+}
+
 #les-recettes {
   display: flex;
   flex-direction: row;
@@ -135,7 +142,7 @@ input {
 .fa-search {
   position: absolute;
   right: 20px;
-  top: 135px;
+  top: 124px;
 }
 
 /*# sourceMappingURL=style.css.map */
