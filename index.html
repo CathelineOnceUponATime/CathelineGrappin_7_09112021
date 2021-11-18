@@ -27,51 +27,54 @@
                 <input type="text" id="barreRecherche" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
                 <i class="fas fa-search fa-2x"></i>
                 <div class="groupe-filtre">
-                    <a>
-                        <div class="filtre filtre--ingredient" id="filtre--ingredient-id"> 
-                            <p id="ingredients"> Ingredients </p>
-                            <input type="text" id="input-ingredient" placeholder="Recherche un ingredient">
-                            <div class="fleche">
-                                <i class="fas fa-chevron-down"></i>
-                                <i class="fas fa-chevron-up"></i>
+                    <div class="filtre-btn ingredient">
+                        <div class="btn-group">
+                            <button type="button" id="btnIngredient" class="btn btn-primary ingredient">
+                            Ingrédients
+                            </button>
+                            <button type="button" id="btnIngredientFleche" class="btn btn-primary dropdown-toggle dropdown-toggle-split ingredient" data-toggle="collapse" href="#collapseIngredient" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="collapseIngredient">
+                                <span class="sr-only"> Ingrédients </span>
+                            </button>
+                        </div>
+                        <div class="collapse container" id="collapseIngredient" role="tabpanel" aria-expanded="true" aria-labelledby="truc">
+                            <div class="row">
                             </div>
                         </div>
-                    </a>
-                    <a>
-                        <div class="filtre filtre--appareil"> 
-                            <p id="appareils"> Appareil </p>
-                            <input type="text" id="input-appareil" placeholder="Recherche un appareil">
-                            <div class="fleche">
-                                <i class="fas fa-chevron-down"></i>
-                                <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="filtre-btn appareil">
+                        <div class="btn-group">
+                            <button type="button" id="btnAppareil" class="btn btn-primary appareil">
+                            Appareils
+                            </button>
+                            <button type="button" id="btnAppareilFleche" class="btn btn-primary dropdown-toggle dropdown-toggle-split appareil" data-toggle="collapse" href="#collapseAppareil" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="collapseAppareil">
+                                <span class="sr-only"> Appareils </span>
+                            </button>
+                        </div>
+                        <div class="collapse" id="collapseAppareil">
+                            <div class="row sansMarge">
                             </div>
                         </div>
-                    </a>
-                    <a>
-                        <div class="filtre filtre--ustensile"> 
-                            <p id="ustensile"> Ustensiles </p>
-                            <input type="text" id="input-ustensile" placeholder="Recherche un ustensile">
-                            <div class="fleche">
-                                <i class="fas fa-chevron-down"></i>
-                                <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="filtre-btn ustensile">
+                        <div class="btn-group">
+                            <button type="button" id="btnUstensile" class="btn btn-primary ustensile">
+                            Ustensiles
+                            </button>
+                            <button type="button" id="btnUstensileFleche" class="btn btn-primary dropdown-toggle dropdown-toggle-split ustensile" data-toggle="collapse" href="#collapseUstensile" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="collapseUstensile">
+                                <span class="sr-only"> Ustensiles </span>
+                            </button>
+                        </div>
+                        <div class="collapse" id="collapseUstensile">
+                            <div class="row sansMarge">
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </form>
             <div id="les-recettes">
                 
             </div>
-            <button class="btn btn-primary" id="btnIngredient" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Ingredients
-            </button>
-            <div class="collapse" id="collapseExample">
-                <div class="list-group">
-                    <button class="list-group-item list-group-item-action"> Lait de Coco </button>
-                    <button class="list-group-item list-group-item-action"> Coco </button>
-                    <button class="list-group-item list-group-item-action"> Poudre d'amande </button>
-                </div>
-            </div>
+            
 		<footer>
 
 		</footer>
@@ -79,5 +82,6 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	</body>
+        
+    </body>
 </html>

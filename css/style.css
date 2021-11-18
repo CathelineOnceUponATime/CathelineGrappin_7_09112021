@@ -10,54 +10,67 @@
   font-size: 18px;
 }
 
-.filtre {
-  padding: 10px;
-  width: 200px;
-  height: 40px;
-  color: white;
-  margin-right: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
+.btn-groupe {
+  width: 100%;
 }
-.filtre .fleche .fa-chevron-up {
-  display: none;
+
+#btnAppareil, #btnUstensile, #btnIngredient {
+  width: 90%;
 }
-.filtre .fleche .fa-chevron-down {
-  display: initial;
-}
-.filtre .fleche:active .fa-chevron-up {
-  display: initial;
-}
-.filtre .fleche:active .fa-chevron-down {
-  display: none;
-}
-.filtre--ingredient {
+
+.ingredient, .ingredient:hover, .ingredient:active, .ingredient:focus, .ingredient:not(:disabled):not(.disabled):active {
+  border-color: #3282f7;
   background-color: #3282f7;
+  color: white;
+  box-shadow: none;
 }
-.filtre--ingredient input {
-  display: none;
+.ingredient:hover, .ingredient:active, .ingredient:focus, .ingredient:hover:hover, .ingredient:hover:active, .ingredient:hover:focus, .ingredient:active:hover, .ingredient:active:active, .ingredient:active:focus, .ingredient:focus:hover, .ingredient:focus:active, .ingredient:focus:focus, .ingredient:not(:disabled):not(.disabled):active:hover, .ingredient:not(:disabled):not(.disabled):active:active, .ingredient:not(:disabled):not(.disabled):active:focus {
+  filter: contrast(90%);
+  box-shadow: none;
 }
-.filtre--appareil {
+
+.appareil, .appareil:hover, .appareil:active, .appareil:focus, .appareil:not(:disabled):not(.disabled):active {
+  border-color: #68d9a4;
   background-color: #68d9a4;
+  color: white;
+  box-shadow: none;
 }
-.filtre--appareil input {
-  display: none;
+.appareil:hover, .appareil:active, .appareil:focus, .appareil:hover:hover, .appareil:hover:active, .appareil:hover:focus, .appareil:active:hover, .appareil:active:active, .appareil:active:focus, .appareil:focus:hover, .appareil:focus:active, .appareil:focus:focus, .appareil:not(:disabled):not(.disabled):active:hover, .appareil:not(:disabled):not(.disabled):active:active, .appareil:not(:disabled):not(.disabled):active:focus {
+  filter: contrast(90%);
+  box-shadow: none;
 }
-.filtre--ustensile {
+
+.ustensile, .ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active {
+  border-color: #ed6454;
   background-color: #ed6454;
+  color: white;
+  box-shadow: none;
 }
-.filtre--ustensile input {
-  display: none;
+.ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active, .ustensile:hover:hover, .ustensile:hover:active, .ustensile:hover:focus, .ustensile:hover:not(:disabled):not(.disabled):active, .ustensile:active:hover, .ustensile:active:active, .ustensile:active:focus, .ustensile:active:not(:disabled):not(.disabled):active, .ustensile:focus:hover, .ustensile:focus:active, .ustensile:focus:focus, .ustensile:focus:not(:disabled):not(.disabled):active, .ustensile:not(:disabled):not(.disabled):active:hover, .ustensile:not(:disabled):not(.disabled):active:active, .ustensile:not(:disabled):not(.disabled):active:focus, .ustensile:not(:disabled):not(.disabled):active:not(:disabled):not(.disabled):active {
+  filter: contrast(90%);
+  box-shadow: none;
 }
 
 .input {
-  background-color: #3282f7;
+  margin: 0;
 }
 .input::placeholder {
   color: white;
+}
+
+.filtre-btn {
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  margin-right: 20px;
+}
+
+.list-group-item:first-child, .btn {
+  border-radius: 0;
+}
+
+.sansMarge {
+  margin: 0;
 }
 
 #les-recettes {

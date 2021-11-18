@@ -6,55 +6,60 @@
     font-weight: bolder;
     font-size: 18px;
 }
-.filtre{
-    padding: 10px;
-    width: 200px;
-    height: 40px;
+
+.btn-groupe {
+    width: 100%;
+}
+#btnAppareil, #btnUstensile, #btnIngredient {
+    width: 90%;
+}
+.ingredient, .ingredient:hover, .ingredient:active, .ingredient:focus, .ingredient:not(:disabled):not(.disabled):active{
+    border-color: $couleur-filtre-bleu;
+    background-color: $couleur-filtre-bleu;
     color: white;
-    margin-right: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 5px;
-    .fleche{
-        .fa-chevron-up {
-            display: none;
-        }
-        .fa-chevron-down {
-            display: initial;
-        }
-        &:active{
-            .fa-chevron-up {
-                display: initial;
-            }
-            .fa-chevron-down {
-                display: none;
-            }
-        }
+    box-shadow: none;
+    &:hover, &:active, &:focus{
+        filter: contrast(90%);
+        box-shadow: none;
     }
-    &--ingredient{
-        background-color: $couleur-filtre-bleu;
-        input {
-            display: none;
-        }
+}
+.appareil, .appareil:hover, .appareil:active, .appareil:focus, .appareil:not(:disabled):not(.disabled):active{
+    border-color: $couleur-filtre-vert;
+    background-color: $couleur-filtre-vert;
+    color: white;
+    box-shadow: none;
+    &:hover, &:active, &:focus{
+        filter: contrast(90%);
+        box-shadow: none;
     }
-    &--appareil{
-        background-color: $couleur-filtre-vert;
-        input {
-            display: none;
-        }
-    }
-    &--ustensile{
-        background-color: $couleur-filtre-rouge;
-        input {
-            display: none;
-        }
+}
+.ustensile, .ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active{
+    border-color: $couleur-filtre-rouge;
+    background-color: $couleur-filtre-rouge;
+    color: white;
+    box-shadow: none;
+    &:hover, &:active, &:focus, &:not(:disabled):not(.disabled):active{
+        filter: contrast(90%);
+        box-shadow: none;
     }
 }
 .input {
-    background-color: $couleur-filtre-bleu;
+    margin: 0;
     &::placeholder {
         color: white;
     }
+}
+
+.filtre-btn {
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.list-group-item:first-child, .btn{
+    border-radius: 0;
+}
+.sansMarge {
+    margin: 0;
 }
