@@ -83,6 +83,21 @@ function rechercheFiltre (pRecherche, pTypeRecherche) {
     }
   }
 }
+function creerTag (pElt, pNomElt) {
+  const ensTag = document.getElementById('ensembleTag')
+  const eltTag = document.createElement('div')
+  const eltBtn = document.createElement('button')
+  const eltDel = document.createElement('i')
+  eltTag.classList.add('tag')
+  eltTag.classList.add(pNomElt)
+  eltTag.innerHTML = pElt
+  ensTag.appendChild(eltTag)
+  eltBtn.classList.add('btn')
+  eltTag.appendChild(eltBtn)
+  eltDel.classList.add('far')
+  eltDel.classList.add('fa-times-circle')
+  eltBtn.appendChild(eltDel)
+}
 function creerBouton (pElmt, pElmts, pNomElmt) {
   const eltBtn = document.createElement('button')
   eltBtn.classList.add('list-group-item')
@@ -135,6 +150,29 @@ function ajouteElement (pElmt) {
 ajouteElement('ingredient')
 ajouteElement('appareil')
 ajouteElement('ustensile')
+
+const eltIng = document.getElementsByClassName('ingredients')
+for (let i = 0; i < eltIng.length; i++) {
+  eltIng[i].addEventListener('click', function () {
+    creerTag(eltIng[i].textContent, 'ingredient')
+    $('#collapseIngredient').collapse('hide')
+  })
+}
+const eltApp = document.getElementsByClassName('appareils')
+for (let i = 0; i < eltApp.length; i++) {
+  eltApp[i].addEventListener('click', function () {
+    creerTag(eltApp[i].textContent, 'appareil')
+    $('#collapseAppareil').collapse('hide')
+  })
+}
+
+const eltUst = document.getElementsByClassName('ustensiles')
+for (let i = 0; i < eltUst.length; i++) {
+  eltUst[i].addEventListener('click', function () {
+    creerTag(eltUst[i].textContent, 'ustensile')
+    $('#collapseUstensile').collapse('hide')
+  })
+}
 
 function rechercheRecette (pRecherche) {
   let bIngredient = false

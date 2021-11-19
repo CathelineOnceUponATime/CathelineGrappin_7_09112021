@@ -17,30 +17,24 @@
     border-color: $couleur-filtre-bleu;
     background-color: $couleur-filtre-bleu;
     color: white;
-    box-shadow: none;
     &:hover, &:active, &:focus{
         filter: contrast(90%);
-        box-shadow: none;
     }
 }
 .appareil, .appareil:hover, .appareil:active, .appareil:focus, .appareil:not(:disabled):not(.disabled):active{
     border-color: $couleur-filtre-vert;
     background-color: $couleur-filtre-vert;
     color: white;
-    box-shadow: none;
     &:hover, &:active, &:focus{
         filter: contrast(90%);
-        box-shadow: none;
     }
 }
 .ustensile, .ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active{
     border-color: $couleur-filtre-rouge;
     background-color: $couleur-filtre-rouge;
     color: white;
-    box-shadow: none;
     &:hover, &:active, &:focus, &:not(:disabled):not(.disabled):active{
         filter: contrast(90%);
-        box-shadow: none;
     }
 }
 .input {
@@ -62,4 +56,7 @@
 }
 .sansMarge {
     margin: 0;
+}
+.btn:focus {
+    box-shadow: none;
 }

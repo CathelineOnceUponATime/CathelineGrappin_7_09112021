@@ -1,6 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+#ensembleTag {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 115px;
+  margin: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.fa-times-circle {
+  color: white;
+}
+
 .groupe-filtre {
   display: flex;
   flex-direction: row;
@@ -22,33 +44,27 @@
   border-color: #3282f7;
   background-color: #3282f7;
   color: white;
-  box-shadow: none;
 }
 .ingredient:hover, .ingredient:active, .ingredient:focus, .ingredient:hover:hover, .ingredient:hover:active, .ingredient:hover:focus, .ingredient:active:hover, .ingredient:active:active, .ingredient:active:focus, .ingredient:focus:hover, .ingredient:focus:active, .ingredient:focus:focus, .ingredient:not(:disabled):not(.disabled):active:hover, .ingredient:not(:disabled):not(.disabled):active:active, .ingredient:not(:disabled):not(.disabled):active:focus {
   filter: contrast(90%);
-  box-shadow: none;
 }
 
 .appareil, .appareil:hover, .appareil:active, .appareil:focus, .appareil:not(:disabled):not(.disabled):active {
   border-color: #68d9a4;
   background-color: #68d9a4;
   color: white;
-  box-shadow: none;
 }
 .appareil:hover, .appareil:active, .appareil:focus, .appareil:hover:hover, .appareil:hover:active, .appareil:hover:focus, .appareil:active:hover, .appareil:active:active, .appareil:active:focus, .appareil:focus:hover, .appareil:focus:active, .appareil:focus:focus, .appareil:not(:disabled):not(.disabled):active:hover, .appareil:not(:disabled):not(.disabled):active:active, .appareil:not(:disabled):not(.disabled):active:focus {
   filter: contrast(90%);
-  box-shadow: none;
 }
 
 .ustensile, .ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active {
   border-color: #ed6454;
   background-color: #ed6454;
   color: white;
-  box-shadow: none;
 }
 .ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active, .ustensile:hover:hover, .ustensile:hover:active, .ustensile:hover:focus, .ustensile:hover:not(:disabled):not(.disabled):active, .ustensile:active:hover, .ustensile:active:active, .ustensile:active:focus, .ustensile:active:not(:disabled):not(.disabled):active, .ustensile:focus:hover, .ustensile:focus:active, .ustensile:focus:focus, .ustensile:focus:not(:disabled):not(.disabled):active, .ustensile:not(:disabled):not(.disabled):active:hover, .ustensile:not(:disabled):not(.disabled):active:active, .ustensile:not(:disabled):not(.disabled):active:focus, .ustensile:not(:disabled):not(.disabled):active:not(:disabled):not(.disabled):active {
   filter: contrast(90%);
-  box-shadow: none;
 }
 
 .input {
@@ -71,6 +87,10 @@
 
 .sansMarge {
   margin: 0;
+}
+
+.btn:focus {
+  box-shadow: none;
 }
 
 #les-recettes {
