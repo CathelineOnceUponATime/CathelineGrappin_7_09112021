@@ -97,6 +97,40 @@ function creerTag (pElt, pNomElt) {
   eltDel.classList.add('far')
   eltDel.classList.add('fa-times-circle')
   eltBtn.appendChild(eltDel)
+  eltTag.addEventListener('click', function () {
+    supprimerTag(pElt)
+  })
+}
+
+function supprimerTag (pElt) {
+  const ensTag = document.getElementById('ensembleTag')
+  const elmtRecherche = document.getElementsByClassName('tag')
+  let elmtType
+  for (let i = 0; i < elmtRecherche.length; i++) {
+    if (elmtRecherche[i].innerText.toLowerCase() === pElt.toLowerCase()) {
+      for (let j = 0; j < elmtRecherche[i].classList.length; j++) {
+        switch (elmtRecherche[i].classList[j].toLowerCase()) {
+          case 'ingredient' :
+            elmtType = document.getElementsByClassName('ingredients')
+            break
+          case 'appareil' :
+            elmtType = document.getElementsByClassName('appareils')
+            break
+          case 'ustensile' :
+            elmtType = document.getElementsByClassName('ustensiles')
+            break
+        }
+      }
+      for (let k = 0; k < elmtType.length; k++) {
+        if (pElt.toLowerCase() === elmtType[k].innerText.toLowerCase()) {
+          elmtType[k].style.display = 'initial'
+          break
+        }
+      }
+      ensTag.removeChild(elmtRecherche[i])
+      break
+    }
+  }
 }
 function creerBouton (pElmt, pElmts, pNomElmt) {
   const eltBtn = document.createElement('button')
@@ -155,6 +189,7 @@ const eltIng = document.getElementsByClassName('ingredients')
 for (let i = 0; i < eltIng.length; i++) {
   eltIng[i].addEventListener('click', function () {
     creerTag(eltIng[i].textContent, 'ingredient')
+    eltIng[i].style.display = 'none'
     $('#collapseIngredient').collapse('hide')
   })
 }
@@ -162,6 +197,7 @@ const eltApp = document.getElementsByClassName('appareils')
 for (let i = 0; i < eltApp.length; i++) {
   eltApp[i].addEventListener('click', function () {
     creerTag(eltApp[i].textContent, 'appareil')
+    eltApp[i].style.display = 'none'
     $('#collapseAppareil').collapse('hide')
   })
 }
@@ -170,6 +206,7 @@ const eltUst = document.getElementsByClassName('ustensiles')
 for (let i = 0; i < eltUst.length; i++) {
   eltUst[i].addEventListener('click', function () {
     creerTag(eltUst[i].textContent, 'ustensile')
+    eltUst[i].style.display = 'none'
     $('#collapseUstensile').collapse('hide')
   })
 }
