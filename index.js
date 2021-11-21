@@ -97,7 +97,7 @@ function creerTag (pElt, pNomElt) {
   eltDel.classList.add('far')
   eltDel.classList.add('fa-times-circle')
   eltBtn.appendChild(eltDel)
-  eltTag.addEventListener('click', function () {
+  eltBtn.addEventListener('click', function () {
     supprimerTag(pElt)
   })
 }
