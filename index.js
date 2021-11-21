@@ -23,37 +23,35 @@ const tUstensiles = []
 const tIngredients = []
 const tAppareils = []
 
-function remplirUstensiles () {
+function remplirIngAppUst (pType) {
   for (let i = 0; i < tRecettes.length; i++) {
-    for (let j = 0; j < tRecettes[i].ustensils.length; j++) {
-      if (!tUstensiles.includes(tRecettes[i].ustensils[j].toLowerCase())) {
-        tUstensiles.push(tRecettes[i].ustensils[j].toLowerCase())
-      }
+    switch (pType) {
+      case 'ingredient' :
+        for (let j = 0; j < tRecettes[i].ingredients.length; j++) {
+          if (!tIngredients.includes(tRecettes[i].ingredients[j].ingredient.toLowerCase())) {
+            tIngredients.push(tRecettes[i].ingredients[j].ingredient.toLowerCase())
+          }
+        }
+        break
+      case 'appareil' :
+        if (!tAppareils.includes(tRecettes[i].appliance.toLowerCase())) {
+          tAppareils.push(tRecettes[i].appliance.toLowerCase())
+        }
+        break
+      case 'ustensile' :
+        for (let j = 0; j < tRecettes[i].ustensils.length; j++) {
+          if (!tUstensiles.includes(tRecettes[i].ustensils[j].toLowerCase())) {
+            tUstensiles.push(tRecettes[i].ustensils[j].toLowerCase())
+          }
+        }
+        break
     }
   }
 }
 
-function remplirIngredients () {
-  for (let i = 0; i < tRecettes.length; i++) {
-    for (let j = 0; j < tRecettes[i].ingredients.length; j++) {
-      if (!tIngredients.includes(tRecettes[i].ingredients[j].ingredient.toLowerCase())) {
-        tIngredients.push(tRecettes[i].ingredients[j].ingredient.toLowerCase())
-      }
-    }
-  }
-}
-
-function remplirAppareils () {
-  for (let i = 0; i < tRecettes.length; i++) {
-    if (!tAppareils.includes(tRecettes[i].appliance.toLowerCase())) {
-      tAppareils.push(tRecettes[i].appliance.toLowerCase())
-    }
-  }
-}
-
-remplirUstensiles()
-remplirIngredients()
-remplirAppareils()
+remplirIngAppUst('ingredient')
+remplirIngAppUst('appareil')
+remplirIngAppUst('ustensile')
 
 function rechercheFiltre (pRecherche, pTypeRecherche) {
   let eltRecherche = pRecherche
@@ -184,32 +182,30 @@ function ajouteElement (pElmt) {
 ajouteElement('ingredient')
 ajouteElement('appareil')
 ajouteElement('ustensile')
-
-const eltIng = document.getElementsByClassName('ingredients')
-for (let i = 0; i < eltIng.length; i++) {
-  eltIng[i].addEventListener('click', function () {
-    creerTag(eltIng[i].textContent, 'ingredient')
-    eltIng[i].style.display = 'none'
-    $('#collapseIngredient').collapse('hide')
-  })
+function ajouteEvtBoutonFiltre (pType) {
+  let eltType
+  switch (pType) {
+    case 'ingredient' :
+      eltType = document.getElementsByClassName('ingredients')
+      break
+    case 'appareil' :
+      eltType = document.getElementsByClassName('appareils')
+      break
+    case 'ustensile' :
+      eltType = document.getElementsByClassName('ustensiles')
+      break
+  }
+  for (let i = 0; i < eltType.length; i++) {
+    eltType[i].addEventListener('click', function () {
+      creerTag(eltType[i].textContent, pType)
+      eltType[i].style.display = 'none'
+      $('#collapse' + pType.charAt(0).toUpperCase() + pType.slice(1) + '').collapse('hide')
+    })
+  }
 }
-const eltApp = document.getElementsByClassName('appareils')
-for (let i = 0; i < eltApp.length; i++) {
-  eltApp[i].addEventListener('click', function () {
-    creerTag(eltApp[i].textContent, 'appareil')
-    eltApp[i].style.display = 'none'
-    $('#collapseAppareil').collapse('hide')
-  })
-}
-
-const eltUst = document.getElementsByClassName('ustensiles')
-for (let i = 0; i < eltUst.length; i++) {
-  eltUst[i].addEventListener('click', function () {
-    creerTag(eltUst[i].textContent, 'ustensile')
-    eltUst[i].style.display = 'none'
-    $('#collapseUstensile').collapse('hide')
-  })
-}
+ajouteEvtBoutonFiltre('ingredient')
+ajouteEvtBoutonFiltre('appareil')
+ajouteEvtBoutonFiltre('ustensile')
 
 function rechercheRecette (pRecherche) {
   let bIngredient = false
@@ -236,66 +232,40 @@ function rechercheRecette (pRecherche) {
 document.getElementById('barreRecherche').addEventListener('input', function (e) {
   rechercheRecette(e.target.value)
 })
+function ajouteEvtInputFleche (pType) {
+  const idFleche = document.getElementById('btn' + pType.charAt(0).toUpperCase() + pType.slice(1) + 'Fleche')
+  const idFiltre = document.getElementById('btn' + pType.charAt(0).toUpperCase() + pType.slice(1) + '')
+  let idInput = document.getElementById('input' + pType.charAt(0).toUpperCase() + pType.slice(1) + '')
+  idFleche.addEventListener('click', function () {
+    idInput = document.getElementById('input' + pType.charAt(0).toUpperCase() + pType.slice(1) + '')
+    if (idInput === null) {
+      idFiltre.innerHTML = '<input type="text" class="input ' + pType + '" id="input' + pType.charAt(0).toUpperCase() + pType.slice(1) + '">'
+      idInput = document.getElementById('input' + pType.charAt(0).toUpperCase() + pType.slice(1) + '')
+      if (pType === 'ingredient') {
+        idInput.placeholder = 'Rechercher un ingrédient...'
+      } else {
+        idInput.placeholder = 'Rechercher un ' + pType + '...'
+      }
+      idInput.addEventListener('input', function (e) {
+        rechercheFiltre(e.target.value, pType)
+      })
+    }
+    idFleche.style.transform = 'rotate(180deg)'
+  })
+  $('#collapse' + pType.charAt(0).toUpperCase() + pType.slice(1) + '').on('hidden.bs.collapse', function () {
+    if (pType === 'ingredient') {
+      idFiltre.innerHTML = 'Ingrédients'
+    } else {
+      idFiltre.innerHTML = pType.charAt(0).toUpperCase() + pType.slice(1) + 's'
+    }
+    idFleche.style.transform = 'rotate(0deg)'
+    rechercheFiltre('', pType)
+  })
+}
 
-document.getElementById('btnIngredientFleche').addEventListener('click', function () {
-  const idFleche = document.getElementById('btnIngredientFleche')
-  const idFiltreIngredient = document.getElementById('btnIngredient')
-  const idInputIngredient = document.getElementById('inputIngredient')
-  if (idInputIngredient === null) {
-    idFiltreIngredient.innerHTML = '<input type="text" class="input ingredient" id="inputIngredient" placeholder="Rechercher un ingrédient...">'
-    document.getElementById('inputIngredient').addEventListener('input', function (e) {
-      rechercheFiltre(e.target.value, 'ingredient')
-    })
-  }
-  idFleche.style.transform = 'rotate(180deg)'
-})
-
-$('#collapseIngredient').on('hidden.bs.collapse', function () {
-  const idFiltreIngredient = document.getElementById('btnIngredient')
-  const idFleche = document.getElementById('btnIngredientFleche')
-  idFiltreIngredient.innerHTML = 'Ingrédients'
-  idFleche.style.transform = 'rotate(0deg)'
-})
-
-document.getElementById('btnAppareilFleche').addEventListener('click', function () {
-  const idFiltreAppareil = document.getElementById('btnAppareil')
-  const idInputAppareil = document.getElementById('inputAppareil')
-  const idFleche = document.getElementById('btnAppareilFleche')
-  if (idInputAppareil === null) {
-    idFiltreAppareil.innerHTML = '<input type="text" class="input appareil" id="inputAppareil" placeholder="Rechercher un appareil...">'
-    document.getElementById('inputAppareil').addEventListener('input', function (e) {
-      rechercheFiltre(e.target.value, 'appareil')
-    })
-  }
-  idFleche.style.transform = 'rotate(180deg)'
-})
-
-$('#collapseAppareil').on('hidden.bs.collapse', function () {
-  const idFiltreIngredient = document.getElementById('btnAppareil')
-  const idFleche = document.getElementById('btnAppareilFleche')
-  idFiltreIngredient.innerHTML = 'Appareils'
-  idFleche.style.transform = 'rotate(0deg)'
-})
-
-document.getElementById('btnUstensileFleche').addEventListener('click', function () {
-  const idFiltreUstensile = document.getElementById('btnUstensile')
-  const idInputUstensile = document.getElementById('inputUstensile')
-  const idFleche = document.getElementById('btnUstensileFleche')
-  if (idInputUstensile === null) {
-    idFiltreUstensile.innerHTML = '<input type="text" class="input ustensile" id="inputUstensile" placeholder="Rechercher un ustensile...">'
-    document.getElementById('inputUstensile').addEventListener('input', function (e) {
-      rechercheFiltre(e.target.value, 'ustensile')
-    })
-  }
-  idFleche.style.transform = 'rotate(180deg)'
-})
-
-$('#collapseUstensile').on('hidden.bs.collapse', function () {
-  const idFiltreIngredient = document.getElementById('btnUstensile')
-  const idFleche = document.getElementById('btnUstensileFleche')
-  idFiltreIngredient.innerHTML = 'Ustensiles'
-  idFleche.style.transform = 'rotate(0deg)'
-})
+ajouteEvtInputFleche('ingredient')
+ajouteEvtInputFleche('appareil')
+ajouteEvtInputFleche('ustensile')
 
 function creerCarte (pId) {
   const recetteCourante = new Recette()
