@@ -45,8 +45,9 @@
   background-color: #3282f7;
   color: white;
 }
-.ingredient:hover, .ingredient:active, .ingredient:focus, .ingredient:hover:hover, .ingredient:hover:active, .ingredient:hover:focus, .ingredient:active:hover, .ingredient:active:active, .ingredient:active:focus, .ingredient:focus:hover, .ingredient:focus:active, .ingredient:focus:focus, .ingredient:not(:disabled):not(.disabled):active:hover, .ingredient:not(:disabled):not(.disabled):active:active, .ingredient:not(:disabled):not(.disabled):active:focus {
+.ingredient:hover, .ingredient:active, .ingredient:focus, .ingredient:not(:disabled):not(.disabled):active, .ingredient:focus-visible, .ingredient:hover:hover, .ingredient:hover:active, .ingredient:hover:focus, .ingredient:hover:not(:disabled):not(.disabled):active, .ingredient:hover:focus-visible, .ingredient:active:hover, .ingredient:active:active, .ingredient:active:focus, .ingredient:active:not(:disabled):not(.disabled):active, .ingredient:active:focus-visible, .ingredient:focus:hover, .ingredient:focus:active, .ingredient:focus:focus, .ingredient:focus:not(:disabled):not(.disabled):active, .ingredient:focus:focus-visible, .ingredient:not(:disabled):not(.disabled):active:hover, .ingredient:not(:disabled):not(.disabled):active:active, .ingredient:not(:disabled):not(.disabled):active:focus, .ingredient:not(:disabled):not(.disabled):active:not(:disabled):not(.disabled):active, .ingredient:not(:disabled):not(.disabled):active:focus-visible {
   filter: contrast(90%);
+  outline: none;
 }
 
 .appareil, .appareil:hover, .appareil:active, .appareil:focus, .appareil:not(:disabled):not(.disabled):active {
@@ -54,8 +55,9 @@
   background-color: #68d9a4;
   color: white;
 }
-.appareil:hover, .appareil:active, .appareil:focus, .appareil:hover:hover, .appareil:hover:active, .appareil:hover:focus, .appareil:active:hover, .appareil:active:active, .appareil:active:focus, .appareil:focus:hover, .appareil:focus:active, .appareil:focus:focus, .appareil:not(:disabled):not(.disabled):active:hover, .appareil:not(:disabled):not(.disabled):active:active, .appareil:not(:disabled):not(.disabled):active:focus {
+.appareil:hover, .appareil:active, .appareil:focus, .appareil:not(:disabled):not(.disabled):active, .appareil:focus-visible, .appareil:hover:hover, .appareil:hover:active, .appareil:hover:focus, .appareil:hover:not(:disabled):not(.disabled):active, .appareil:hover:focus-visible, .appareil:active:hover, .appareil:active:active, .appareil:active:focus, .appareil:active:not(:disabled):not(.disabled):active, .appareil:active:focus-visible, .appareil:focus:hover, .appareil:focus:active, .appareil:focus:focus, .appareil:focus:not(:disabled):not(.disabled):active, .appareil:focus:focus-visible, .appareil:not(:disabled):not(.disabled):active:hover, .appareil:not(:disabled):not(.disabled):active:active, .appareil:not(:disabled):not(.disabled):active:focus, .appareil:not(:disabled):not(.disabled):active:not(:disabled):not(.disabled):active, .appareil:not(:disabled):not(.disabled):active:focus-visible {
   filter: contrast(90%);
+  outline: none;
 }
 
 .ustensile, .ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active {
@@ -63,8 +65,9 @@
   background-color: #ed6454;
   color: white;
 }
-.ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active, .ustensile:hover:hover, .ustensile:hover:active, .ustensile:hover:focus, .ustensile:hover:not(:disabled):not(.disabled):active, .ustensile:active:hover, .ustensile:active:active, .ustensile:active:focus, .ustensile:active:not(:disabled):not(.disabled):active, .ustensile:focus:hover, .ustensile:focus:active, .ustensile:focus:focus, .ustensile:focus:not(:disabled):not(.disabled):active, .ustensile:not(:disabled):not(.disabled):active:hover, .ustensile:not(:disabled):not(.disabled):active:active, .ustensile:not(:disabled):not(.disabled):active:focus, .ustensile:not(:disabled):not(.disabled):active:not(:disabled):not(.disabled):active {
+.ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active, .ustensile:focus-visible, .ustensile:hover:hover, .ustensile:hover:active, .ustensile:hover:focus, .ustensile:hover:not(:disabled):not(.disabled):active, .ustensile:hover:focus-visible, .ustensile:active:hover, .ustensile:active:active, .ustensile:active:focus, .ustensile:active:not(:disabled):not(.disabled):active, .ustensile:active:focus-visible, .ustensile:focus:hover, .ustensile:focus:active, .ustensile:focus:focus, .ustensile:focus:not(:disabled):not(.disabled):active, .ustensile:focus:focus-visible, .ustensile:not(:disabled):not(.disabled):active:hover, .ustensile:not(:disabled):not(.disabled):active:active, .ustensile:not(:disabled):not(.disabled):active:focus, .ustensile:not(:disabled):not(.disabled):active:not(:disabled):not(.disabled):active, .ustensile:not(:disabled):not(.disabled):active:focus-visible {
   filter: contrast(90%);
+  outline: none;
 }
 
 .input {
@@ -89,8 +92,16 @@
   margin: 0;
 }
 
-.btn:focus {
+.btn:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: none;
+}
+
+.btn:focus-visible {
+  outline: none;
+}
+
+.btn-tags {
+  min-width: 200px;
 }
 
 #les-recettes {

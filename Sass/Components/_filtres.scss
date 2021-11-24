@@ -17,24 +17,27 @@
     border-color: $couleur-filtre-bleu;
     background-color: $couleur-filtre-bleu;
     color: white;
-    &:hover, &:active, &:focus{
+    &:hover, &:active, &:focus, &:not(:disabled):not(.disabled):active, &:focus-visible{
         filter: contrast(90%);
+        outline: none;
     }
 }
 .appareil, .appareil:hover, .appareil:active, .appareil:focus, .appareil:not(:disabled):not(.disabled):active{
     border-color: $couleur-filtre-vert;
     background-color: $couleur-filtre-vert;
     color: white;
-    &:hover, &:active, &:focus{
+    &:hover, &:active, &:focus, &:not(:disabled):not(.disabled):active, &:focus-visible{
         filter: contrast(90%);
+        outline: none;
     }
 }
 .ustensile, .ustensile:hover, .ustensile:active, .ustensile:focus, .ustensile:not(:disabled):not(.disabled):active{
     border-color: $couleur-filtre-rouge;
     background-color: $couleur-filtre-rouge;
     color: white;
-    &:hover, &:active, &:focus, &:not(:disabled):not(.disabled):active{
+    &:hover, &:active, &:focus, &:not(:disabled):not(.disabled):active, &:focus-visible{
         filter: contrast(90%);
+        outline: none;
     }
 }
 .input {
@@ -57,6 +60,12 @@
 .sansMarge {
     margin: 0;
 }
-.btn:focus {
+.btn:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
     box-shadow: none;
+}
+.btn:focus-visible {
+    outline: none;
+}
+.btn-tags{
+    min-width: 200px;
 }
