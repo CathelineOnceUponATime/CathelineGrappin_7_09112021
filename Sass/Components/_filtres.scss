@@ -17,6 +17,7 @@
     border-color: $couleur-filtre-bleu;
     background-color: $couleur-filtre-bleu;
     color: white;
+    filter: brightness(100%);
     &:hover, &:active, &:focus, &:not(:disabled):not(.disabled):active, &:focus-visible{
         filter: contrast(90%);
         outline: none;
@@ -26,6 +27,7 @@
     border-color: $couleur-filtre-vert;
     background-color: $couleur-filtre-vert;
     color: white;
+    filter: brightness(100%);
     &:hover, &:active, &:focus, &:not(:disabled):not(.disabled):active, &:focus-visible{
         filter: contrast(90%);
         outline: none;
@@ -35,6 +37,7 @@
     border-color: $couleur-filtre-rouge;
     background-color: $couleur-filtre-rouge;
     color: white;
+    filter: brightness(100%);
     &:hover, &:active, &:focus, &:not(:disabled):not(.disabled):active, &:focus-visible{
         filter: contrast(90%);
         outline: none;

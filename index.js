@@ -9,6 +9,7 @@ class Ingredient {
     this.unit = unit
   }
 }
+
 class Recette {
   constructor (id, name, servings, time, description, appareil, bAffiche) {
     this.id = id
@@ -22,6 +23,7 @@ class Recette {
     this.tUstensiles = []
   }
 }
+
 class Tag {
   constructor (name, type, bAffiche) {
     this.name = name
@@ -29,14 +31,30 @@ class Tag {
     this.bAffiche = bAffiche
   }
 }
+
+class Filtre {
+  constructor (name, type, bAffiche) {
+    this.name = name
+    this.type = type
+    this.bAffiche = bAffiche
+  }
+}
+
 const tUstensiles = []
 const tIngredients = []
 const tAppareils = []
+
+const tRecettesAffichees = []
+
 let tTags = []
-let tRecettesAffichees = []
 const tTagsIngredient = []
 const tTagsAppareil = []
 const tTagsUstensile = []
+
+let tFiltres = []
+const tFiltresIngredient = []
+const tFiltresAppareil = []
+const tFiltresUstensile = []
 
 function remplirIngAppUst (pType) {
   for (let i = 0; i < tRecettes.length; i++) {
@@ -90,39 +108,61 @@ function rechercheFiltre (pRecherche, pTypeRecherche) {
   eltRecherche = eltRecherche.toLowerCase()
   let elmtRecherche
   tTags = []
-  let eltRecettes = document.getElementsByClassName('recette')
+  tFiltres = []
+  const eltRecettes = document.getElementsByClassName('recette')
   switch (pTypeRecherche) {
     case 'ingredient' :
       elmtRecherche = document.getElementsByClassName('ingredients')
       tTags = tTagsIngredient
+      tFiltres = tFiltresIngredient
       break
     case 'appareil' :
       elmtRecherche = document.getElementsByClassName('appareils')
       tTags = tTagsAppareil
+      tFiltres = tFiltresAppareil
       break
 
     case 'ustensile' :
       elmtRecherche = document.getElementsByClassName('ustensiles')
       tTags = tTagsUstensile
+      tFiltres = tFiltresUstensile
       break
   }
   for (let i = 0; i < elmtRecherche.length; i++) {
-    if (eltRecherche.length > 2) {
-      if (!elmtRecherche[i].innerText.toLowerCase().includes(eltRecherche)) {
-        elmtRecherche[i].style.display = 'none'
+    for (let j = 0; j < tFiltres.length; j++) {
+      if (eltRecherche.length > 2) {
+        if (elmtRecherche[i].innerText.toLowerCase().includes(eltRecherche)) {
+          if (tFiltres[j].name === elmtRecherche[i].innerText.toLowerCase()) {
+            if (!tFiltres[j].bAffiche) {
+              elmtRecherche[i].style.display = 'none'
+              break
+            } else {
+              elmtRecherche[i].style.display = 'initial'
+              break
+            }
+          }
+        } else {
+          elmtRecherche[i].style.display = 'none'
+        }
       } else {
-        elmtRecherche[i].style.display = 'initial'
+        if (tFiltres[j].name === elmtRecherche[i].innerText.toLowerCase()) {
+          if (eltRecettes.length === 0) {
+            elmtRecherche[i].style.display = 'initial'
+            break
+          } else {
+            if (!tFiltres[j].bAffiche) {
+              elmtRecherche[i].style.display = 'none'
+              break
+            } else {
+              elmtRecherche[i].style.display = 'initial'
+              break
+            }
+          }
+        }
       }
-    } else {
-      elmtRecherche[i].style.display = 'initial'
     }
   }
   supprimerTagRecherche(elmtRecherche)
-  if (eltRecettes.length > 0) {
-    actualiserFiltres('ingredient')
-    actualiserFiltres('appareil')
-    actualiserFiltres('ustensile')
-  }
 }
 
 function creerTag (pElt, pNomElt) {
@@ -150,7 +190,6 @@ function supprimerTag (pElt) {
   const elmtRecherche = document.getElementsByClassName('tag')
   let elmtType
   tTags = []
-  let typeRecherche
   for (let i = 0; i < elmtRecherche.length; i++) {
     if (elmtRecherche[i].innerText.toLowerCase() === pElt.toLowerCase()) {
       for (let j = 0; j < elmtRecherche[i].classList.length; j++) {
@@ -158,17 +197,14 @@ function supprimerTag (pElt) {
           case 'ingredient' :
             elmtType = document.getElementsByClassName('ingredients')
             tTags = tTagsIngredient
-            typeRecherche = 'ingredient'
             break
           case 'appareil' :
             elmtType = document.getElementsByClassName('appareils')
             tTags = tTagsAppareil
-            typeRecherche = 'appareil'
             break
           case 'ustensile' :
             elmtType = document.getElementsByClassName('ustensiles')
             tTags = tTagsUstensile
-            typeRecherche = 'ustensile'
             break
         }
       }
@@ -213,6 +249,7 @@ function ajouteElement (pElmt) {
   let eltChildren
   let eltBtn
   let tagCourant
+  let filtreCourant
   switch (pElmt) {
     case 'ingredient':
       idCollapse = document.getElementById('collapseIngredient')
@@ -220,8 +257,12 @@ function ajouteElement (pElmt) {
       for (let i = 0; i < tIngredients.length; i++) {
         eltBtn = creerBouton('ingredients', 'ingredient', tIngredients[i])
         eltChildren.appendChild(eltBtn)
+        // Création du Tag
         tagCourant = new Tag(tIngredients[i], 'ingredient', false)
         tTagsIngredient.push(tagCourant)
+        // Création du Filtre
+        filtreCourant = new Filtre(tIngredients[i], 'ingredient')
+        tFiltresIngredient.push(filtreCourant)
       }
       break
     case 'appareil':
@@ -230,8 +271,12 @@ function ajouteElement (pElmt) {
       for (let i = 0; i < tAppareils.length; i++) {
         eltBtn = creerBouton('appareils', 'appareil', tAppareils[i])
         eltChildren.appendChild(eltBtn)
+        // Création du Tag
         tagCourant = new Tag(tAppareils[i], 'appareil', false)
         tTagsAppareil.push(tagCourant)
+        // Création du Filtre
+        filtreCourant = new Filtre(tAppareils[i], 'appareil')
+        tFiltresAppareil.push(filtreCourant)
       }
       break
     case 'ustensile':
@@ -240,8 +285,12 @@ function ajouteElement (pElmt) {
       for (let i = 0; i < tUstensiles.length; i++) {
         eltBtn = creerBouton('ustensiles', 'ustensile', tUstensiles[i])
         eltChildren.appendChild(eltBtn)
+        // Création du Tag
         tagCourant = new Tag(tUstensiles[i], 'ustensile', false)
         tTagsUstensile.push(tagCourant)
+        // Création du Filtre
+        filtreCourant = new Filtre(tUstensiles[i], 'ustensile')
+        tFiltresUstensile.push(filtreCourant)
       }
       break
   }
@@ -327,7 +376,7 @@ function rechercheRecette (pRecherche) {
         bTrouve = false
         recetteDejaAffiche = document.getElementById(tRecettes[i].id)
         if (recetteDejaAffiche === null) {
-          creerCarte(tRecettes[i].id)
+          creerCarte(parseInt(tRecettes[i].id, 10))
           actualiserFiltres('ingredient')
           actualiserFiltres('appareil')
           actualiserFiltres('ustensile')
@@ -335,7 +384,7 @@ function rechercheRecette (pRecherche) {
       } else {
         recetteDejaAffiche = document.getElementById(tRecettes[i].id)
         if (recetteDejaAffiche !== null) {
-          supprimerCarte(tRecettes[i].id)
+          supprimerCarte(parseInt(tRecettes[i].id, 10))
           actualiserFiltres('ingredient')
           actualiserFiltres('appareil')
           actualiserFiltres('ustensile')
@@ -345,11 +394,14 @@ function rechercheRecette (pRecherche) {
   } else {
     eltRecettes = document.getElementsByClassName('recette')
     while (eltRecettes.length > 0) {
-      supprimerCarte(eltRecettes[eltRecettes.length - 1].id)
+      supprimerCarte(parseInt(eltRecettes[eltRecettes.length - 1].id, 10))
     }
     if (eltRecettes.length === 0) {
       eltAlert[0].style.display = 'block'
     }
+    rechercheFiltre('', 'ingredient')
+    rechercheFiltre('', 'appareil')
+    rechercheFiltre('', 'ustensile')
   }
 }
 
@@ -393,62 +445,79 @@ ajouteEvtInputFleche('appareil')
 ajouteEvtInputFleche('ustensile')
 
 function actualiserFiltres (pType) {
-
   let eltType
+  tFiltres = []
   switch (pType) {
     case 'ingredient' :
       eltType = document.getElementsByClassName('ingredients')
+      tFiltres = tFiltresIngredient
       break
     case 'appareil' :
       eltType = document.getElementsByClassName('appareils')
+      tFiltres = tFiltresAppareil
       break
     case 'ustensile' :
       eltType = document.getElementsByClassName('ustensiles')
+      tFiltres = tFiltresUstensile
       break
   }
 
-  for (let e = 0;  e < eltType.length; e++){
-    eltType[e].style.display = 'none'
-  }
+  if (tRecettesAffichees.length > 0) {
+    for (let e = 0; e < eltType.length; e++) {
+      eltType[e].style.display = 'none'
+    }
+    for (let f = 0; f < tFiltres.length; f++) {
+      tFiltres[f].bAffiche = false
+    }
 
-  for (let i = 0; i < tRecettesAffichees.length; i++) {
-    for (let k = 0; k < eltType.length; k++) {
-      switch (pType) {
-        case 'ingredient' :
-          for (let j = 0; j < tRecettesAffichees[i].tIngredient.length; j++) {
-            if (tRecettesAffichees[i].tIngredient[j].ingredient.toLowerCase() === eltType[k].textContent.toLowerCase()) {
-              eltType[k].style.display = 'initial'
+    for (let i = 0; i < tRecettesAffichees.length; i++) {
+      for (let k = 0; k < tFiltres.length; k++) {
+        switch (pType) {
+          case 'ingredient' :
+            for (let j = 0; j < tRecettesAffichees[i].tIngredient.length; j++) {
+              if (tRecettesAffichees[i].tIngredient[j].ingredient.toLowerCase() === tFiltres[k].name.toLowerCase()) {
+                tFiltres[k].bAffiche = true
+                break
+              }
+            }
+            break
+          case 'appareil' :
+            if (tRecettesAffichees[i].appareil.toLowerCase() === tFiltres[k].name.toLowerCase()) {
+              tFiltres[k].bAffiche = true
               break
             }
-          }
-          break
-        case 'appareil' :
-          if (tRecettesAffichees[i].appareil.toLowerCase() === eltType[k].textContent.toLowerCase()) {
-            eltType[k].style.display = 'initial'
+            break
+          case 'ustensile' :
+            for (let j = 0; j < tRecettesAffichees[i].tUstensiles.length; j++) {
+              if (tRecettesAffichees[i].tUstensiles[j].toLowerCase() === tFiltres[k].name.toLowerCase()) {
+                tFiltres[k].bAffiche = true
+                break
+              }
+            }
+            break
+        }
+      }
+    }
+
+    for (let i = 0; i < tFiltres.length; i++) {
+      for (let j = 0; j < eltType.length; j++) {
+        if (eltType[j].textContent.toLowerCase() === tFiltres[i].name.toLowerCase()) {
+          if (tFiltres[i].bAffiche) {
+            eltType[j].style.display = 'initial'
             break
           }
-          break
-        case 'ustensile' :
-          for (let j = 0; j < tRecettesAffichees[i].tUstensiles.length; j++) {
-            if (tRecettesAffichees[i].tUstensiles[j].toLowerCase() === eltType[k].textContent.toLowerCase()) {
-              eltType[k].style.display = 'initial'
-              break
-            }
-          }
-          break
-        
+        }
       }
     }
   }
 }
-
 function supprimerCarte (pId) {
   const idRecettes = document.getElementById('les-recettes')
   const idRecetteSupprimer = document.getElementById(pId)
 
   for (let i = 0; i < tRecettesAffichees.length; i++) {
-    if (tRecettesAffichees[i].id == pId) {
-      tRecettesAffichees.splice(i,1)
+    if (tRecettesAffichees[i].id === pId) {
+      tRecettesAffichees.splice(i, 1)
       break
     }
   }
@@ -492,8 +561,19 @@ function creerRecette (pId) {
 
 function creerCarte (pId) {
   let ingredientCourant
+  let bRecettePresente = false
   const recetteCourante = creerRecette(pId)
-  tRecettesAffichees.push(recetteCourante)
+
+  for (let i = 0; i < tRecettesAffichees.length; i++) {
+    if (tRecettesAffichees[i].id === pId) {
+      bRecettePresente = true
+      break
+    }
+  }
+
+  if (!bRecettePresente) {
+    tRecettesAffichees.push(recetteCourante)
+  }
 
   // Récupérer les recetes
   const idRecettes = document.getElementById('les-recettes')
