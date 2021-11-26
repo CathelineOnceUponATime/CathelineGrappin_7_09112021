@@ -102,7 +102,45 @@ function supprimerTagRecherche (pElmtRecherche) {
     }
   }
 }
-
+function filtreTag (pTag) {
+  let recetteDejaAffiche
+  let bRecettePresente
+  for (let i = 0; i < tRecettes.length; i++) {
+    bRecettePresente = false
+    switch (pTag.type) {
+      case 'ingredient' :
+        for (let j = 0; j < tRecettes[i].ingredients.length; j++) {
+          if (tRecettes[i].ingredients[j].ingredient.toLowerCase() === pTag.name.toLowerCase()) {
+            bRecettePresente = true
+            break
+          }
+        }
+        break
+      case 'appareil' :
+        if (tRecettes[i].appliance.toLowerCase() === pTag.name.toLowerCase()) {
+          bRecettePresente = true
+        }
+        break
+      case 'ustensile' :
+        for (let j = 0; j < tRecettes[i].ustensils.length; j++) {
+          if (tRecettes[i].ustensils[j].toLowerCase() === pTag.name.toLowerCase()) {
+            bRecettePresente = true
+            break
+          }
+        }
+        break
+    }
+    if (bRecettePresente) {
+      recetteDejaAffiche = document.getElementById(tRecettes[i].id)
+      if (recetteDejaAffiche === null) {
+        creerCarte(parseInt(tRecettes[i].id, 10))
+        actualiserFiltres('ingredient')
+        actualiserFiltres('appareil')
+        actualiserFiltres('ustensile')
+      }
+    }
+  }
+}
 function rechercheFiltre (pRecherche, pTypeRecherche) {
   let eltRecherche = pRecherche
   eltRecherche = eltRecherche.toLowerCase()
@@ -302,6 +340,7 @@ ajouteElement('ustensile')
 
 function ajouteEvtBoutonFiltre (pType) {
   let eltType
+  const tagCourant = new Tag()
   switch (pType) {
     case 'ingredient' :
       eltType = document.getElementsByClassName('ingredients')
@@ -316,6 +355,9 @@ function ajouteEvtBoutonFiltre (pType) {
   for (let i = 0; i < eltType.length; i++) {
     eltType[i].addEventListener('click', function () {
       creerTag(eltType[i].textContent, pType)
+      tagCourant.name = eltType[i].textContent
+      tagCourant.type = pType
+      filtreTag(tagCourant)
       switch (pType) {
         case 'ingredient' :
           for (let j = 0; j < tTagsIngredient.length; j++) {
