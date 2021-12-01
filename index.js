@@ -86,15 +86,23 @@ remplirIngAppUst('ingredient')
 remplirIngAppUst('appareil')
 remplirIngAppUst('ustensile')
 
+function supprimerToutTagRecherche () {
+  let elmtRecherche = document.getElementsByClassName('ingredients')
+  supprimerTagRecherche(elmtRecherche, tTagsIngredient)
+  elmtRecherche = document.getElementsByClassName('appareils')
+  supprimerTagRecherche(elmtRecherche, tTagsAppareil)
+  elmtRecherche = document.getElementsByClassName('ustensiles')
+  supprimerTagRecherche(elmtRecherche, tTagsUstensile)
+}
 /*
   Fonction qui prend en paramètre un pElmtRecherche qui est le tableau rempli des élèments des filtres voulu
   il enlève l'affichage des boutons dont les tags sont présents dans les filtres
 */
-function supprimerTagRecherche (pElmtRecherche) {
+function supprimerTagRecherche (pElmtRecherche, ptTags) {
   for (let i = 0; i < pElmtRecherche.length; i++) {
-    for (let j = 0; j < tTags.length; j++) {
-      if (tTags[j].name.toLowerCase() === pElmtRecherche[i].innerText.toLowerCase()) {
-        if (tTags[j].bAffiche) {
+    for (let j = 0; j < ptTags.length; j++) {
+      if (ptTags[j].name.toLowerCase() === pElmtRecherche[i].innerText.toLowerCase()) {
+        if (ptTags[j].bAffiche) {
           pElmtRecherche[i].style.display = 'none'
           break
         }
@@ -102,6 +110,7 @@ function supprimerTagRecherche (pElmtRecherche) {
     }
   }
 }
+
 function filtreTag (pTag) {
   let recetteDejaAffiche
   let bRecettePresente
@@ -141,13 +150,14 @@ function filtreTag (pTag) {
     }
   }
 }
+
 function rechercheFiltre (pRecherche, pTypeRecherche) {
   let eltRecherche = pRecherche
   eltRecherche = eltRecherche.toLowerCase()
   let elmtRecherche
   tTags = []
   tFiltres = []
-  const eltRecettes = document.getElementsByClassName('recette')
+  // const eltRecettes = document.getElementsByClassName('recette')
   switch (pTypeRecherche) {
     case 'ingredient' :
       elmtRecherche = document.getElementsByClassName('ingredients')
@@ -168,39 +178,25 @@ function rechercheFiltre (pRecherche, pTypeRecherche) {
   }
   for (let i = 0; i < elmtRecherche.length; i++) {
     for (let j = 0; j < tFiltres.length; j++) {
-      if (eltRecherche.length > 2) {
-        if (elmtRecherche[i].innerText.toLowerCase().includes(eltRecherche)) {
-          if (tFiltres[j].name === elmtRecherche[i].innerText.toLowerCase()) {
-            if (!tFiltres[j].bAffiche) {
+      if (elmtRecherche[i].innerText.toLowerCase().includes(eltRecherche)) {
+        if (tFiltres[j].name === elmtRecherche[i].innerText.toLowerCase()) {
+          switch (tFiltres[j].bAffiche) {
+            case false :
               elmtRecherche[i].style.display = 'none'
               break
-            } else {
+            case true :
+            case undefined :
               elmtRecherche[i].style.display = 'initial'
               break
-            }
           }
-        } else {
-          elmtRecherche[i].style.display = 'none'
+          break
         }
       } else {
-        if (tFiltres[j].name === elmtRecherche[i].innerText.toLowerCase()) {
-          if (eltRecettes.length === 0) {
-            elmtRecherche[i].style.display = 'initial'
-            break
-          } else {
-            if (!tFiltres[j].bAffiche) {
-              elmtRecherche[i].style.display = 'none'
-              break
-            } else {
-              elmtRecherche[i].style.display = 'initial'
-              break
-            }
-          }
-        }
+        elmtRecherche[i].style.display = 'none'
       }
     }
   }
-  supprimerTagRecherche(elmtRecherche)
+  supprimerToutTagRecherche()
 }
 
 function creerTag (pElt, pNomElt) {
@@ -553,6 +549,7 @@ function actualiserFiltres (pType) {
     }
   }
 }
+
 function supprimerCarte (pId) {
   const idRecettes = document.getElementById('les-recettes')
   const idRecetteSupprimer = document.getElementById(pId)
