@@ -25,10 +25,11 @@ class Recette {
 }
 
 class Tag {
-  constructor (name, type, bAffiche) {
+  constructor (name, type, bAffiche, bTrouve) {
     this.name = name
     this.type = type
     this.bAffiche = bAffiche
+    this.bTrouve = bTrouve
   }
 }
 
@@ -50,6 +51,7 @@ let tTags = []
 const tTagsIngredient = []
 const tTagsAppareil = []
 const tTagsUstensile = []
+const tTagsAffiches = []
 
 let tFiltres = []
 const tFiltresIngredient = []
@@ -151,6 +153,56 @@ function filtreTag (pTag) {
   }
 }
 
+function supprimeRecettePasTag () {
+  let bTrouve = false
+  for (let j = 0; j < tRecettesAffichees.length; j++) {
+    for (let k = 0; k < tTagsAffiches.length; k++) {
+      bTrouve = false
+      switch (tTagsAffiches[k].type) {
+        case 'ingredient' :
+          for (let l = 0; l < tRecettesAffichees[j].tIngredient.length; l++) {
+            if (tTagsAffiches[k].name.toLowerCase() === tRecettesAffichees[j].tIngredient[l].ingredient.toLowerCase()) {
+              bTrouve = true
+              tTagsAffiches[k].bTrouve = true
+              break
+            }
+          }
+          break
+        case 'appareil' :
+          if (tTagsAffiches[k].name.toLowerCase() === tRecettesAffichees[j].appareil.toLowerCase()) {
+            bTrouve = true
+            tTagsAffiches[k].bTrouve = true
+            break
+          }
+          break
+        case 'ustensile' :
+          for (let l = 0; l < tRecettesAffichees[j].tUstensiles.length; l++) {
+            if (tTagsAffiches[k].name.toLowerCase() === tRecettesAffichees[j].tUstensiles[l].toLowerCase()) {
+              bTrouve = true
+              tTagsAffiches[k].bTrouve = true
+              break
+            }
+          }
+          break
+      }
+    }
+    for (let e = 0; e < tTagsAffiches.length; e++) {
+      if (tTagsAffiches[e].bTrouve === undefined) {
+        bTrouve = false
+      }
+    }
+    if (!bTrouve) {
+      supprimerCarte(parseInt(tRecettesAffichees[j].id))
+      actualiserFiltres('ingredient')
+      actualiserFiltres('appareil')
+      actualiserFiltres('ustensile')
+      j--
+    }
+    for (let e = 0; e < tTagsAffiches.length; e++) {
+      tTagsAffiches[e].bTrouve = undefined
+    }
+  }
+}
 function rechercheFiltre (pRecherche, pTypeRecherche) {
   let eltRecherche = pRecherche
   eltRecherche = eltRecherche.toLowerCase()
@@ -254,6 +306,12 @@ function supprimerTag (pElt) {
           break
         }
       }
+      for (let e = 0; e < tTagsAffiches; e++) {
+        if (elmtRecherche[i].innerText.toLowerCase() === tTagsAffiches[e].name.toLowerCase()) {
+          tTagsAffiches.splice(e, 1)
+          break
+        }
+      }
       ensTag.removeChild(elmtRecherche[i])
       break
     }
@@ -336,7 +394,7 @@ ajouteElement('ustensile')
 
 function ajouteEvtBoutonFiltre (pType) {
   let eltType
-  const tagCourant = new Tag()
+  let tagCourant = new Tag()
   switch (pType) {
     case 'ingredient' :
       eltType = document.getElementsByClassName('ingredients')
@@ -351,9 +409,11 @@ function ajouteEvtBoutonFiltre (pType) {
   for (let i = 0; i < eltType.length; i++) {
     eltType[i].addEventListener('click', function () {
       creerTag(eltType[i].textContent, pType)
+      tagCourant = new Tag()
       tagCourant.name = eltType[i].textContent
       tagCourant.type = pType
       filtreTag(tagCourant)
+      tTagsAffiches.push(tagCourant)
       switch (pType) {
         case 'ingredient' :
           for (let j = 0; j < tTagsIngredient.length; j++) {
@@ -382,6 +442,7 @@ function ajouteEvtBoutonFiltre (pType) {
       }
       eltType[i].style.display = 'none'
       $('#collapse' + pType.charAt(0).toUpperCase() + pType.slice(1) + '').collapse('hide')
+      supprimeRecettePasTag()
     })
   }
 }
