@@ -47,7 +47,6 @@ const tAppareils = []
 
 const tRecettesAffichees = []
 
-let tTags = []
 const tTagsIngredient = []
 const tTagsAppareil = []
 const tTagsUstensile = []
@@ -111,6 +110,11 @@ function supprimerTagRecherche (pElmtRecherche, ptTags) {
       }
     }
   }
+  if (tTagsAffiches.length === 0) {
+    for (let i = 0; i < pElmtRecherche.length; i++) {
+      pElmtRecherche[i].style.display = 'initial'
+    }
+  }
 }
 
 function filtreTag (pTag) {
@@ -151,6 +155,7 @@ function filtreTag (pTag) {
       }
     }
   }
+  supprimerToutTagRecherche()
 }
 
 function supprimeRecettePasTag () {
@@ -193,38 +198,45 @@ function supprimeRecettePasTag () {
     }
     if (!bTrouve) {
       supprimerCarte(parseInt(tRecettesAffichees[j].id))
-      actualiserFiltres('ingredient')
-      actualiserFiltres('appareil')
-      actualiserFiltres('ustensile')
       j--
+      if (tTagsAffiches.length > 0) {
+        actualiserFiltres('ingredient')
+        actualiserFiltres('appareil')
+        actualiserFiltres('ustensile')
+      }
     }
     for (let e = 0; e < tTagsAffiches.length; e++) {
       tTagsAffiches[e].bTrouve = undefined
     }
   }
+  supprimerToutTagRecherche()
+  const eltRecettes = document.getElementsByClassName('recette')
+  const eltAlert = document.getElementsByClassName('alert-warning')
+  if (eltRecettes.length === 0) {
+    eltAlert[0].style.display = 'block'
+  } else {
+    eltAlert[0].style.display = 'none'
+  }
 }
+
 function rechercheFiltre (pRecherche, pTypeRecherche) {
   let eltRecherche = pRecherche
   eltRecherche = eltRecherche.toLowerCase()
   let elmtRecherche
-  tTags = []
   tFiltres = []
   // const eltRecettes = document.getElementsByClassName('recette')
   switch (pTypeRecherche) {
     case 'ingredient' :
       elmtRecherche = document.getElementsByClassName('ingredients')
-      tTags = tTagsIngredient
       tFiltres = tFiltresIngredient
       break
     case 'appareil' :
       elmtRecherche = document.getElementsByClassName('appareils')
-      tTags = tTagsAppareil
       tFiltres = tFiltresAppareil
       break
 
     case 'ustensile' :
       elmtRecherche = document.getElementsByClassName('ustensiles')
-      tTags = tTagsUstensile
       tFiltres = tFiltresUstensile
       break
   }
@@ -275,22 +287,36 @@ function supprimerTag (pElt) {
   const ensTag = document.getElementById('ensembleTag')
   const elmtRecherche = document.getElementsByClassName('tag')
   let elmtType
-  tTags = []
   for (let i = 0; i < elmtRecherche.length; i++) {
     if (elmtRecherche[i].innerText.toLowerCase() === pElt.toLowerCase()) {
       for (let j = 0; j < elmtRecherche[i].classList.length; j++) {
         switch (elmtRecherche[i].classList[j].toLowerCase()) {
           case 'ingredient' :
             elmtType = document.getElementsByClassName('ingredients')
-            tTags = tTagsIngredient
+            for (let l = 0; l < tTagsIngredient.length; l++) {
+              if (elmtRecherche[i].innerText.toLowerCase() === tTagsIngredient[l].name.toLowerCase()) {
+                tTagsIngredient[l].bAffiche = false
+                break
+              }
+            }
             break
           case 'appareil' :
             elmtType = document.getElementsByClassName('appareils')
-            tTags = tTagsAppareil
+            for (let l = 0; l < tTagsAppareil.length; l++) {
+              if (elmtRecherche[i].innerText.toLowerCase() === tTagsAppareil[l].name.toLowerCase()) {
+                tTagsAppareil[l].bAffiche = false
+                break
+              }
+            }
             break
           case 'ustensile' :
             elmtType = document.getElementsByClassName('ustensiles')
-            tTags = tTagsUstensile
+            for (let l = 0; l < tTagsUstensile.length; l++) {
+              if (elmtRecherche[i].innerText.toLowerCase() === tTagsUstensile[l].name.toLowerCase()) {
+                tTagsUstensile[l].bAffiche = false
+                break
+              }
+            }
             break
         }
       }
@@ -300,22 +326,20 @@ function supprimerTag (pElt) {
           break
         }
       }
-      for (let l = 0; l < tTags.length; l++) {
-        if (elmtRecherche[i].innerText.toLowerCase() === tTags[l].name.toLowerCase()) {
-          tTags[l].bAffiche = false
-          break
-        }
-      }
-      for (let e = 0; e < tTagsAffiches; e++) {
+      for (let e = 0; e < tTagsAffiches.length; e++) {
         if (elmtRecherche[i].innerText.toLowerCase() === tTagsAffiches[e].name.toLowerCase()) {
           tTagsAffiches.splice(e, 1)
           break
         }
       }
+      for (let e = 0; e < tTagsAffiches.length; e++) {
+        filtreTag(tTagsAffiches[e])
+      }
       ensTag.removeChild(elmtRecherche[i])
       break
     }
   }
+  supprimeRecettePasTag()
 }
 
 function creerBouton (pElmt, pElmts, pNomElmt) {
