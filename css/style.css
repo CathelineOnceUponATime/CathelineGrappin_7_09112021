@@ -30,6 +30,7 @@
   font-family: "Lato";
   font-weight: bolder;
   font-size: 18px;
+  margin-left: 20px;
 }
 
 .btn-groupe {
@@ -112,6 +113,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  margin-left: 20px;
 }
 
 .recette {
@@ -131,6 +133,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 0px 0px 5px 5px;
+  height: 300px;
 }
 .recette--detail--ingredient {
   margin: 0;
@@ -148,6 +151,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  height: 80%;
 }
 .recette--detail .recette-ingredient-quantite-unite-description .recette-ingredient-quantite-unite {
   display: flex;
@@ -159,6 +163,12 @@
   margin: 0;
   margin-left: 20px;
   width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 header {
@@ -175,10 +185,14 @@ header .logo {
   color: #d04f4f;
 }
 
+.input-recherche {
+  position: relative;
+}
+
 input {
-  margin-top: 20px;
+  margin: 20px;
   padding: 10px 0px;
-  width: 100%;
+  width: 97%;
   height: 40px;
   background-color: #e7e7e7;
   border: none;
@@ -189,13 +203,24 @@ input {
 .fa-search {
   position: absolute;
   right: 20px;
-  top: 124px;
+  top: 23px;
 }
 
 .alert-warning {
   margin: 0;
   margin-top: 20px;
   display: none;
+}
+
+@media (max-width: 576px) {
+  .recette {
+    width: 100%;
+  }
+}
+@media (min-width: 577px) and (max-width: 900px) {
+  .recette {
+    width: 45%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

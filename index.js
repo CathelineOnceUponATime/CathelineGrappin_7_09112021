@@ -57,6 +57,8 @@ const tFiltresIngredient = []
 const tFiltresAppareil = []
 const tFiltresUstensile = []
 
+// let recherchePrincipal
+
 function remplirIngAppUst (pType) {
   for (let i = 0; i < tRecettes.length; i++) {
     switch (pType) {
@@ -482,6 +484,7 @@ function rechercheRecette (pRecherche) {
   eltRecherche = eltRecherche.toLowerCase()
   let eltRecettes = document.getElementsByClassName('recette')
   const eltAlert = document.getElementsByClassName('alert-warning')
+  // recherchePrincipal = pRecherche
   if (eltRecherche.length > 2) {
     for (let i = 0; i < tRecettes.length; i++) {
       eltRecettes = document.getElementsByClassName('recette')
@@ -512,6 +515,9 @@ function rechercheRecette (pRecherche) {
           actualiserFiltres('appareil')
           actualiserFiltres('ustensile')
         }
+      }
+      if (tTagsAffiches.length > 0) {
+        supprimeRecettePasTag()
       }
     }
   } else {

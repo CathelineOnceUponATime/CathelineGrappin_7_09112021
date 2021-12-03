@@ -1,7 +1,10 @@
+.input-recherche{
+    position: relative;
+}
 input {
-    margin-top: 20px;
+    margin: 20px;
     padding: 10px 0px;
-    width: 100%;
+    width: 97%;
     height: 40px;
     background-color: $couleur-fond;
     border: none;
@@ -11,7 +14,7 @@ input {
 .fa-search {
     position: absolute;
     right: 20px;
-    top: 124px;
+    top: 23px;
 }
 .alert-warning {
     margin: 0;
