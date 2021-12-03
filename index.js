@@ -87,19 +87,19 @@ remplirIngAppUst('ingredient')
 remplirIngAppUst('appareil')
 remplirIngAppUst('ustensile')
 
-function supprimerToutTagRecherche () {
+function supprimerToutTagRecherche (pRecherche = '') {
   let elmtRecherche = document.getElementsByClassName('ingredients')
-  supprimerTagRecherche(elmtRecherche, tTagsIngredient)
+  supprimerTagRecherche(elmtRecherche, tTagsIngredient, pRecherche)
   elmtRecherche = document.getElementsByClassName('appareils')
-  supprimerTagRecherche(elmtRecherche, tTagsAppareil)
+  supprimerTagRecherche(elmtRecherche, tTagsAppareil, pRecherche)
   elmtRecherche = document.getElementsByClassName('ustensiles')
-  supprimerTagRecherche(elmtRecherche, tTagsUstensile)
+  supprimerTagRecherche(elmtRecherche, tTagsUstensile, pRecherche)
 }
 /*
   Fonction qui prend en paramètre un pElmtRecherche qui est le tableau rempli des élèments des filtres voulu
   il enlève l'affichage des boutons dont les tags sont présents dans les filtres
 */
-function supprimerTagRecherche (pElmtRecherche, ptTags) {
+function supprimerTagRecherche (pElmtRecherche, ptTags, pRecherche) {
   for (let i = 0; i < pElmtRecherche.length; i++) {
     for (let j = 0; j < ptTags.length; j++) {
       if (ptTags[j].name.toLowerCase() === pElmtRecherche[i].innerText.toLowerCase()) {
@@ -110,9 +110,11 @@ function supprimerTagRecherche (pElmtRecherche, ptTags) {
       }
     }
   }
-  if (tTagsAffiches.length === 0) {
-    for (let i = 0; i < pElmtRecherche.length; i++) {
-      pElmtRecherche[i].style.display = 'initial'
+  if (pRecherche.length === 0) {
+    if (tTagsAffiches.length === 0) {
+      for (let i = 0; i < pElmtRecherche.length; i++) {
+        pElmtRecherche[i].style.display = 'initial'
+      }
     }
   }
 }
@@ -244,23 +246,21 @@ function rechercheFiltre (pRecherche, pTypeRecherche) {
     for (let j = 0; j < tFiltres.length; j++) {
       if (elmtRecherche[i].innerText.toLowerCase().includes(eltRecherche)) {
         if (tFiltres[j].name === elmtRecherche[i].innerText.toLowerCase()) {
-          switch (tFiltres[j].bAffiche) {
-            case false :
-              elmtRecherche[i].style.display = 'none'
-              break
-            case true :
-            case undefined :
-              elmtRecherche[i].style.display = 'initial'
-              break
+          if (tFiltres[j].bAffiche) {
+            elmtRecherche[i].style.display = 'initial'
+            break
+          } else {
+            elmtRecherche[i].style.display = 'none'
+            break
           }
-          break
         }
       } else {
         elmtRecherche[i].style.display = 'none'
+        break
       }
     }
   }
-  supprimerToutTagRecherche()
+  supprimerToutTagRecherche(pRecherche)
 }
 
 function creerTag (pElt, pNomElt) {
@@ -377,7 +377,7 @@ function ajouteElement (pElmt) {
         tagCourant = new Tag(tIngredients[i], 'ingredient', false)
         tTagsIngredient.push(tagCourant)
         // Création du Filtre
-        filtreCourant = new Filtre(tIngredients[i], 'ingredient')
+        filtreCourant = new Filtre(tIngredients[i], 'ingredient', true)
         tFiltresIngredient.push(filtreCourant)
       }
       break
@@ -391,7 +391,7 @@ function ajouteElement (pElmt) {
         tagCourant = new Tag(tAppareils[i], 'appareil', false)
         tTagsAppareil.push(tagCourant)
         // Création du Filtre
-        filtreCourant = new Filtre(tAppareils[i], 'appareil')
+        filtreCourant = new Filtre(tAppareils[i], 'appareil', true)
         tFiltresAppareil.push(filtreCourant)
       }
       break
@@ -405,7 +405,7 @@ function ajouteElement (pElmt) {
         tagCourant = new Tag(tUstensiles[i], 'ustensile', false)
         tTagsUstensile.push(tagCourant)
         // Création du Filtre
-        filtreCourant = new Filtre(tUstensiles[i], 'ustensile')
+        filtreCourant = new Filtre(tUstensiles[i], 'ustensile', true)
         tFiltresUstensile.push(filtreCourant)
       }
       break
@@ -436,8 +436,8 @@ function ajouteEvtBoutonFiltre (pType) {
       tagCourant = new Tag()
       tagCourant.name = eltType[i].textContent
       tagCourant.type = pType
-      filtreTag(tagCourant)
       tTagsAffiches.push(tagCourant)
+      filtreTag(tagCourant)
       switch (pType) {
         case 'ingredient' :
           for (let j = 0; j < tTagsIngredient.length; j++) {
@@ -515,16 +515,18 @@ function rechercheRecette (pRecherche) {
       }
     }
   } else {
-    eltRecettes = document.getElementsByClassName('recette')
-    while (eltRecettes.length > 0) {
-      supprimerCarte(parseInt(eltRecettes[eltRecettes.length - 1].id, 10))
+    if (tTagsAffiches.length === 0) {
+      eltRecettes = document.getElementsByClassName('recette')
+      while (eltRecettes.length > 0) {
+        supprimerCarte(parseInt(eltRecettes[eltRecettes.length - 1].id, 10))
+      }
+      if (eltRecettes.length === 0) {
+        eltAlert[0].style.display = 'block'
+      }
+      rechercheFiltre('', 'ingredient')
+      rechercheFiltre('', 'appareil')
+      rechercheFiltre('', 'ustensile')
     }
-    if (eltRecettes.length === 0) {
-      eltAlert[0].style.display = 'block'
-    }
-    rechercheFiltre('', 'ingredient')
-    rechercheFiltre('', 'appareil')
-    rechercheFiltre('', 'ustensile')
   }
 }
 
