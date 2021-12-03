@@ -190,9 +190,9 @@ header .logo {
 }
 
 input {
-  margin: 20px;
+  margin: 0% 2%;
   padding: 10px 0px;
-  width: 97%;
+  width: 96%;
   height: 40px;
   background-color: #e7e7e7;
   border: none;
@@ -202,8 +202,8 @@ input {
 
 .fa-search {
   position: absolute;
-  right: 20px;
-  top: 23px;
+  right: 2%;
+  top: 3px;
 }
 
 .alert-warning {
