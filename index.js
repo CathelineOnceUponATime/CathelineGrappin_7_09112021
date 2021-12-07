@@ -57,7 +57,23 @@ const tFiltresIngredient = []
 const tFiltresAppareil = []
 const tFiltresUstensile = []
 
-// let recherchePrincipal
+let recherchePrincipal = ''
+let bRecherche = false
+
+function supprimerToutesLesRecettes () {
+  if ((tTagsAffiches.length === 0) && (recherchePrincipal.length === 0)) {
+    while (tRecettesAffichees.length > 0) {
+      supprimerCarte(parseInt(tRecettesAffichees[tRecettesAffichees.length - 1].id, 10))
+    }
+  }
+  const eltRecettes = document.getElementsByClassName('recette')
+  const eltAlert = document.getElementsByClassName('alert-warning')
+  if (eltRecettes.length === 0) {
+    eltAlert[0].style.display = 'block'
+  } else {
+    eltAlert[0].style.display = 'none'
+  }
+}
 
 function remplirIngAppUst (pType) {
   for (let i = 0; i < tRecettes.length; i++) {
@@ -112,11 +128,9 @@ function supprimerTagRecherche (pElmtRecherche, ptTags, pRecherche) {
       }
     }
   }
-  if (pRecherche.length === 0) {
-    if (tTagsAffiches.length === 0) {
-      for (let i = 0; i < pElmtRecherche.length; i++) {
-        pElmtRecherche[i].style.display = 'initial'
-      }
+  if ((pRecherche.length === 0) && (recherchePrincipal.length === 0) && (tTagsAffiches.length === 0)) {
+    for (let i = 0; i < pElmtRecherche.length; i++) {
+      pElmtRecherche[i].style.display = 'initial'
     }
   }
 }
@@ -164,6 +178,10 @@ function filtreTag (pTag) {
 
 function supprimeRecettePasTag () {
   let bTrouve = false
+  if ((recherchePrincipal.length > 0) && (bRecherche)) {
+    bRecherche = false
+    rechercheRecette(recherchePrincipal)
+  }
   for (let j = 0; j < tRecettesAffichees.length; j++) {
     for (let k = 0; k < tTagsAffiches.length; k++) {
       bTrouve = false
@@ -201,9 +219,9 @@ function supprimeRecettePasTag () {
       }
     }
     if (!bTrouve) {
-      supprimerCarte(parseInt(tRecettesAffichees[j].id))
-      j--
       if (tTagsAffiches.length > 0) {
+        supprimerCarte(parseInt(tRecettesAffichees[j].id, 10))
+        j--
         actualiserFiltres('ingredient')
         actualiserFiltres('appareil')
         actualiserFiltres('ustensile')
@@ -214,13 +232,7 @@ function supprimeRecettePasTag () {
     }
   }
   supprimerToutTagRecherche()
-  const eltRecettes = document.getElementsByClassName('recette')
-  const eltAlert = document.getElementsByClassName('alert-warning')
-  if (eltRecettes.length === 0) {
-    eltAlert[0].style.display = 'block'
-  } else {
-    eltAlert[0].style.display = 'none'
-  }
+  supprimerToutesLesRecettes()
 }
 
 function rechercheFiltre (pRecherche, pTypeRecherche) {
@@ -341,6 +353,7 @@ function supprimerTag (pElt) {
       break
     }
   }
+  bRecherche = true
   supprimeRecettePasTag()
 }
 
@@ -468,6 +481,7 @@ function ajouteEvtBoutonFiltre (pType) {
       }
       eltType[i].style.display = 'none'
       $('#collapse' + pType.charAt(0).toUpperCase() + pType.slice(1) + '').collapse('hide')
+      bRecherche = true
       supprimeRecettePasTag()
     })
   }
@@ -484,7 +498,7 @@ function rechercheRecette (pRecherche) {
   eltRecherche = eltRecherche.toLowerCase()
   let eltRecettes = document.getElementsByClassName('recette')
   const eltAlert = document.getElementsByClassName('alert-warning')
-  // recherchePrincipal = pRecherche
+  recherchePrincipal = pRecherche
   if (eltRecherche.length > 2) {
     for (let i = 0; i < tRecettes.length; i++) {
       eltRecettes = document.getElementsByClassName('recette')
@@ -503,35 +517,28 @@ function rechercheRecette (pRecherche) {
         recetteDejaAffiche = document.getElementById(tRecettes[i].id)
         if (recetteDejaAffiche === null) {
           creerCarte(parseInt(tRecettes[i].id, 10))
-          actualiserFiltres('ingredient')
-          actualiserFiltres('appareil')
-          actualiserFiltres('ustensile')
         }
       } else {
         recetteDejaAffiche = document.getElementById(tRecettes[i].id)
         if (recetteDejaAffiche !== null) {
           supprimerCarte(parseInt(tRecettes[i].id, 10))
-          actualiserFiltres('ingredient')
-          actualiserFiltres('appareil')
-          actualiserFiltres('ustensile')
         }
       }
-      if (tTagsAffiches.length > 0) {
-        supprimeRecettePasTag()
-      }
     }
+    if (tTagsAffiches.length > 0) {
+      supprimeRecettePasTag()
+    }
+    actualiserFiltres('ingredient')
+    actualiserFiltres('appareil')
+    actualiserFiltres('ustensile')
   } else {
     if (tTagsAffiches.length === 0) {
-      eltRecettes = document.getElementsByClassName('recette')
-      while (eltRecettes.length > 0) {
-        supprimerCarte(parseInt(eltRecettes[eltRecettes.length - 1].id, 10))
-      }
-      if (eltRecettes.length === 0) {
-        eltAlert[0].style.display = 'block'
-      }
+      supprimerToutesLesRecettes()
       rechercheFiltre('', 'ingredient')
       rechercheFiltre('', 'appareil')
       rechercheFiltre('', 'ustensile')
+    } else {
+      supprimeRecettePasTag()
     }
   }
 }
