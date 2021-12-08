@@ -431,6 +431,16 @@ ajouteElement('ingredient')
 ajouteElement('appareil')
 ajouteElement('ustensile')
 
+function fermerTousLesCollapses () {
+  let type
+  type = 'ingredient'
+  $('#collapse' + type.charAt(0).toUpperCase() + type.slice(1) + '').collapse('hide')
+  type = 'appareil'
+  $('#collapse' + type.charAt(0).toUpperCase() + type.slice(1) + '').collapse('hide')
+  type = 'ustensile'
+  $('#collapse' + type.charAt(0).toUpperCase() + type.slice(1) + '').collapse('hide')
+}
+
 function ajouteEvtBoutonFiltre (pType) {
   let eltType
   let tagCourant = new Tag()
@@ -525,12 +535,12 @@ function rechercheRecette (pRecherche) {
         }
       }
     }
-    if (tTagsAffiches.length > 0) {
-      supprimeRecettePasTag()
-    }
     actualiserFiltres('ingredient')
     actualiserFiltres('appareil')
     actualiserFiltres('ustensile')
+    if (tTagsAffiches.length > 0) {
+      supprimeRecettePasTag()
+    }
   } else {
     if (tTagsAffiches.length === 0) {
       supprimerToutesLesRecettes()
@@ -545,6 +555,10 @@ function rechercheRecette (pRecherche) {
 
 document.getElementById('barreRecherche').addEventListener('input', function (e) {
   rechercheRecette(e.target.value)
+})
+
+document.getElementById('barreRecherche').addEventListener('click', function (e) {
+  // fermerTousLesCollapses()
 })
 
 function ajouteEvtInputFleche (pType) {
