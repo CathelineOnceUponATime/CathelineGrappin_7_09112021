@@ -1,10 +1,29 @@
-@media (max-width: 576px)
+@media (max-width: 674px)
 {
   .recette{
     width: 100%;
   }
+  .groupe-filtre{
+    flex-direction: column;
+    position: relative;
+  }
+  .filtre-btn.ingredient{
+    z-index: 3;
+  }
+  .filtre-btn.appareil{
+    z-index: 2;
+  }
+  .filtre-btn.ustensile{
+    z-index: 1;
+  }
+  .filtre-btn{
+    margin-bottom: 20px;
+  }
+  .container{
+    max-width: 674px;
+  }
 }
-@media (min-width: 577px) and (max-width: 900px)
+@media (min-width: 675px) and (max-width: 1000px)
 {
   .recette{
     width: 45%;

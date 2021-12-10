@@ -130,11 +130,11 @@
 }
 .recette--detail {
   background-color: #e7e7e7;
-  padding-left: 10px;
   display: flex;
   flex-direction: column;
   border-radius: 0px 0px 5px 5px;
   height: 300px;
+  padding: 10px 10px 0px 10px;
 }
 .recette--detail--ingredient {
   margin: 0;
@@ -152,7 +152,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  height: 80%;
+  height: 83%;
 }
 .recette--detail .recette-ingredient-quantite-unite-description .recette-ingredient-quantite-unite {
   display: flex;
@@ -213,12 +213,37 @@ input {
   display: none;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 674px) {
   .recette {
     width: 100%;
   }
+
+  .groupe-filtre {
+    flex-direction: column;
+    position: relative;
+  }
+
+  .filtre-btn.ingredient {
+    z-index: 3;
+  }
+
+  .filtre-btn.appareil {
+    z-index: 2;
+  }
+
+  .filtre-btn.ustensile {
+    z-index: 1;
+  }
+
+  .filtre-btn {
+    margin-bottom: 20px;
+  }
+
+  .container {
+    max-width: 674px;
+  }
 }
-@media (min-width: 577px) and (max-width: 900px) {
+@media (min-width: 675px) and (max-width: 1000px) {
   .recette {
     width: 45%;
   }

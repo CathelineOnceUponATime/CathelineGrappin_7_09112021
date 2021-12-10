@@ -548,6 +548,9 @@ function rechercheRecette (pRecherche) {
       rechercheFiltre('', 'appareil')
       rechercheFiltre('', 'ustensile')
     } else {
+      for (let e = 0; e < tTagsAffiches.length; e++) {
+        filtreTag(tTagsAffiches[e])
+      }
       supprimeRecettePasTag()
     }
   }
