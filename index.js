@@ -59,15 +59,17 @@ const tFiltresUstensile = []
 
 let recherchePrincipal = ''
 let bRecherche = false
+const idBarreRecherche = document.getElementById('barreRecherche')
 
 function supprimerToutesLesRecettes () {
+  const eltRecettes = document.getElementsByClassName('recette')
+  const eltAlert = document.getElementsByClassName('alert-warning')
+
   if ((tTagsAffiches.length === 0) && (recherchePrincipal.length === 0)) {
     while (tRecettesAffichees.length > 0) {
       supprimerCarte(parseInt(tRecettesAffichees[tRecettesAffichees.length - 1].id, 10))
     }
   }
-  const eltRecettes = document.getElementsByClassName('recette')
-  const eltAlert = document.getElementsByClassName('alert-warning')
   if (eltRecettes.length === 0) {
     eltAlert[0].style.display = 'block'
   } else {
@@ -431,16 +433,6 @@ ajouteElement('ingredient')
 ajouteElement('appareil')
 ajouteElement('ustensile')
 
-function fermerTousLesCollapses () {
-  let type
-  type = 'ingredient'
-  $('#collapse' + type.charAt(0).toUpperCase() + type.slice(1) + '').collapse('hide')
-  type = 'appareil'
-  $('#collapse' + type.charAt(0).toUpperCase() + type.slice(1) + '').collapse('hide')
-  type = 'ustensile'
-  $('#collapse' + type.charAt(0).toUpperCase() + type.slice(1) + '').collapse('hide')
-}
-
 function ajouteEvtBoutonFiltre (pType) {
   let eltType
   let tagCourant = new Tag()
@@ -556,12 +548,19 @@ function rechercheRecette (pRecherche) {
   }
 }
 
-document.getElementById('barreRecherche').addEventListener('input', function (e) {
+idBarreRecherche.addEventListener('input', function (e) {
   rechercheRecette(e.target.value)
 })
 
-document.getElementById('barreRecherche').addEventListener('click', function (e) {
-  // fermerTousLesCollapses()
+idBarreRecherche.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    if (e.preventDefault) {
+      e.preventDefault()
+      e.stopPropagation()
+    } else {
+      e.cancelBubble = true
+    }
+  }
 })
 
 function ajouteEvtInputFleche (pType) {
@@ -580,6 +579,16 @@ function ajouteEvtInputFleche (pType) {
       }
       idInput.addEventListener('input', function (e) {
         rechercheFiltre(e.target.value, pType)
+      })
+      idInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          if (e.preventDefault) {
+            e.preventDefault()
+            e.stopPropagation()
+          } else {
+            e.cancelBubble = true
+          }
+        }
       })
     }
     idFleche.style.transform = 'rotate(180deg)'
