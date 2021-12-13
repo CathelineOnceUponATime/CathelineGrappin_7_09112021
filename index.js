@@ -3,8 +3,8 @@ import { recipes } from './recipes.js'
 const tRecettes = recipes
 
 class Ingredient {
-  constructor (ingredient, quantity, unit) {
-    this.ingredient = ingredient
+  constructor (name, quantity, unit) {
+    this.name = name
     this.quantity = quantity
     this.unit = unit
   }
@@ -61,6 +61,11 @@ let recherchePrincipal = ''
 let bRecherche = false
 const idBarreRecherche = document.getElementById('barreRecherche')
 
+/*
+  Fonction SupprimerToutesLesRecettes ne prenant aucun argument
+  - permet de faire apparaître le message "aucune recette ne correspond aux critères saisis"
+  - permet de supprimer toutes les recettes encore affichées s'il n'y a plus de tag, ni de mot clé
+*/
 function supprimerToutesLesRecettes () {
   const eltRecettes = document.getElementsByClassName('recette')
   const eltAlert = document.getElementsByClassName('alert-warning')
@@ -77,6 +82,10 @@ function supprimerToutesLesRecettes () {
   }
 }
 
+/*
+  Fonction RemplirIngAppUst prenant un paramètre, le type de filtre.
+  - permet de remplir les tableaux d'objets pour ensuite constituer les filtres.
+*/
 function remplirIngAppUst (pType) {
   for (let i = 0; i < tRecettes.length; i++) {
     switch (pType) {
@@ -103,10 +112,18 @@ function remplirIngAppUst (pType) {
   }
 }
 
+/*
+  Différents appels à la fonction ci-dessus RemplirIngAppUst
+*/
 remplirIngAppUst('ingredient')
 remplirIngAppUst('appareil')
 remplirIngAppUst('ustensile')
 
+/*
+  Fonction SupprimerToutTagRecherche prenant un paramètre facultatif.
+  - pRecherche est une chaine de caractères correspondant à la recherche effectuée sur l'un des filtres.
+  - permet de faire appel à la fonction SupprimerTagRecherche pour tous les filtres
+*/
 function supprimerToutTagRecherche (pRecherche = '') {
   let elmtRecherche = document.getElementsByClassName('ingredients')
   supprimerTagRecherche(elmtRecherche, tTagsIngredient, pRecherche)
@@ -115,9 +132,13 @@ function supprimerToutTagRecherche (pRecherche = '') {
   elmtRecherche = document.getElementsByClassName('ustensiles')
   supprimerTagRecherche(elmtRecherche, tTagsUstensile, pRecherche)
 }
+
 /*
-  Fonction qui prend en paramètre un pElmtRecherche qui est le tableau rempli des élèments des filtres voulu
-  il enlève l'affichage des boutons dont les tags sont présents dans les filtres
+  Fonction SupprimerTagRecherche prenant 3 paramètres.
+  - un pElmtRecherche qui est le tableau rempli des élèments des filtres voulu
+  - ptTags qui est le tableau de tags
+  - pRecherche qui est une chaine de caractères correspondant à la recherche effectuée sur l'un des filtres
+  - permet d'enlever l'affichage des boutons dont les tags sont présents dans les filtres
 */
 function supprimerTagRecherche (pElmtRecherche, ptTags, pRecherche) {
   for (let i = 0; i < pElmtRecherche.length; i++) {
@@ -130,6 +151,8 @@ function supprimerTagRecherche (pElmtRecherche, ptTags, pRecherche) {
       }
     }
   }
+  // S'il n'y a aucune recherche dans les filtres, aucun tag affiché et aucun mot clé
+  // dans ce cas tous les filtres sont affichés.
   if ((pRecherche.length === 0) && (recherchePrincipal.length === 0) && (tTagsAffiches.length === 0)) {
     for (let i = 0; i < pElmtRecherche.length; i++) {
       pElmtRecherche[i].style.display = 'initial'
@@ -137,6 +160,11 @@ function supprimerTagRecherche (pElmtRecherche, ptTags, pRecherche) {
   }
 }
 
+/*
+  Fonction FiltreTag prenant en paramètre un Tag.
+  -  permet en parcourant les différents filtres si l'un d'eux correspond au tag en paramètre
+  si c'est le cas, la création de la recette est affichée puis un rafraîchissement des filtres est effectué
+*/
 function filtreTag (pTag) {
   let recetteDejaAffiche
   let bRecettePresente
@@ -178,6 +206,11 @@ function filtreTag (pTag) {
   supprimerToutTagRecherche()
 }
 
+/*
+  Fonction SupprimeRecettePasTag prenant aucun paramètre.
+  - permet de supprimer les recettes affichées qui n'ont pas les tags voulus.
+  - elle relance la recherche d'une recette par mot clé si le tag n'est pas le dernier évènement.
+*/
 function supprimeRecettePasTag () {
   let bTrouve = false
   if ((recherchePrincipal.length > 0) && (bRecherche)) {
@@ -190,7 +223,7 @@ function supprimeRecettePasTag () {
       switch (tTagsAffiches[k].type) {
         case 'ingredient' :
           for (let l = 0; l < tRecettesAffichees[j].tIngredient.length; l++) {
-            if (tTagsAffiches[k].name.toLowerCase() === tRecettesAffichees[j].tIngredient[l].ingredient.toLowerCase()) {
+            if (tTagsAffiches[k].name.toLowerCase() === tRecettesAffichees[j].tIngredient[l].name.toLowerCase()) {
               bTrouve = true
               tTagsAffiches[k].bTrouve = true
               break
@@ -237,6 +270,11 @@ function supprimeRecettePasTag () {
   supprimerToutesLesRecettes()
 }
 
+/*
+  Fonction RechercheFiltre prenant deux paramètres.
+  - permet de rechercher dans les filtres un mot clé saisie.
+  - mettre en invisible les mots ne correspondants pas à la recherche.
+*/
 function rechercheFiltre (pRecherche, pTypeRecherche) {
   let eltRecherche = pRecherche
   eltRecherche = eltRecherche.toLowerCase()
@@ -279,6 +317,10 @@ function rechercheFiltre (pRecherche, pTypeRecherche) {
   supprimerToutTagRecherche(pRecherche)
 }
 
+/*
+  fonction CreerTag prenant deux paramètres.
+  - permet de créer le tag dans le DOM
+*/
 function creerTag (pElt, pNomElt) {
   const ensTag = document.getElementById('ensembleTag')
   const eltTag = document.createElement('div')
@@ -299,6 +341,13 @@ function creerTag (pElt, pNomElt) {
   })
 }
 
+/*
+  fonciton SupprimerTag prenant en paramètre un pElt.
+  - permet de supprimer le tag du tableau des tags affichés
+  - et repasser en bAffiche a faux dans le tableau des tags du type correspondant
+  - faire apparaitre le tag dans les filtres
+  - le supprimer du DOM
+*/
 function supprimerTag (pElt) {
   const ensTag = document.getElementById('ensembleTag')
   const elmtRecherche = document.getElementsByClassName('tag')
@@ -359,6 +408,11 @@ function supprimerTag (pElt) {
   supprimeRecettePasTag()
 }
 
+/*
+  Fonction CreerBouton prenant 3 paramètres.
+  - permet de créer chaque bouton dans le DOM
+  - chaque bouton correspondant à un filtre et à un futur tag
+*/
 function creerBouton (pElmt, pElmts, pNomElmt) {
   const eltBtn = document.createElement('button')
   eltBtn.classList.add('list-group-item')
@@ -377,6 +431,10 @@ function creerBouton (pElmt, pElmts, pNomElmt) {
   return eltBtn
 }
 
+/*
+  Fonction AjouteElement prenant un paramètre.
+  - permet d'ajouter dans chaque collapse un bouton correspondant à un filtre.
+*/
 function ajouteElement (pElmt) {
   let idCollapse
   let eltChildren
@@ -433,6 +491,10 @@ ajouteElement('ingredient')
 ajouteElement('appareil')
 ajouteElement('ustensile')
 
+/*
+  Fonction AjouteEvtBoutonFiltre prenant un paramètre.
+  - permet d'ajouter un évènement au clic sur un filtre pour la création du Tag.
+*/
 function ajouteEvtBoutonFiltre (pType) {
   let eltType
   let tagCourant = new Tag()
@@ -493,6 +555,10 @@ ajouteEvtBoutonFiltre('ingredient')
 ajouteEvtBoutonFiltre('appareil')
 ajouteEvtBoutonFiltre('ustensile')
 
+/*
+  Fonction RechercheRecette prenant un paramètre.
+  - permet de créer ou supprimer une recette correspondant au mot clé recherché.
+*/
 function rechercheRecette (pRecherche) {
   let bTrouve = false
   let recetteDejaAffiche
@@ -548,10 +614,16 @@ function rechercheRecette (pRecherche) {
   }
 }
 
+/*
+  Appel qui ajoute l'évènement sur l'input pour la recherche d'une recette par rapport au mot clé entré.
+*/
 idBarreRecherche.addEventListener('input', function (e) {
   rechercheRecette(e.target.value)
 })
 
+/*
+  Evènement permettant de supprimer le comportement par défaut de la touche entrée sur l'input.
+*/
 idBarreRecherche.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     if (e.preventDefault) {
@@ -563,6 +635,10 @@ idBarreRecherche.addEventListener('keypress', function (e) {
   }
 })
 
+/*
+  Fonction AjouteEvtInputFleche prenant un paramètre.
+  - permet au clic sur la flèche du filtre qu'elle pivote, et rajoute un input à la place du texte et inversement.
+*/
 function ajouteEvtInputFleche (pType) {
   const idFleche = document.getElementById('btn' + pType.charAt(0).toUpperCase() + pType.slice(1) + 'Fleche')
   const idFiltre = document.getElementById('btn' + pType.charAt(0).toUpperCase() + pType.slice(1) + '')
@@ -608,6 +684,10 @@ ajouteEvtInputFleche('ingredient')
 ajouteEvtInputFleche('appareil')
 ajouteEvtInputFleche('ustensile')
 
+/*
+  Fonction ActualiserFiltres prenant un paramètre.
+  - permet d'afficher uniquement les filtres correspondants aux différentes recettes affichées et supprimer les autres.
+*/
 function actualiserFiltres (pType) {
   let eltType
   tFiltres = []
@@ -639,7 +719,7 @@ function actualiserFiltres (pType) {
         switch (pType) {
           case 'ingredient' :
             for (let j = 0; j < tRecettesAffichees[i].tIngredient.length; j++) {
-              if (tRecettesAffichees[i].tIngredient[j].ingredient.toLowerCase() === tFiltres[k].name.toLowerCase()) {
+              if (tRecettesAffichees[i].tIngredient[j].name.toLowerCase() === tFiltres[k].name.toLowerCase()) {
                 tFiltres[k].bAffiche = true
                 break
               }
@@ -676,6 +756,10 @@ function actualiserFiltres (pType) {
   }
 }
 
+/*
+  Fonction SupprimerCarte prenant un paramètre.
+  - permet de supprimer la recette avec l'id du DOM et du tableau des recettes affichées.
+*/
 function supprimerCarte (pId) {
   const idRecettes = document.getElementById('les-recettes')
   const idRecetteSupprimer = document.getElementById(pId)
@@ -691,7 +775,10 @@ function supprimerCarte (pId) {
     idRecettes.removeChild(idRecetteSupprimer)
   }
 }
-
+/*
+  Fonction CreerRecette prenant un paramètre.
+  - permet de créer l'objet Recette avec tous les attributs correspondants à celle-ci.
+*/
 function creerRecette (pId) {
   const recetteCourante = new Recette()
   let ingredientCourant
@@ -704,7 +791,7 @@ function creerRecette (pId) {
       recetteCourante.appareil = tRecettes[i].appliance
       for (let j = 0; j < tRecettes[i].ingredients.length; j++) {
         ingredientCourant = new Ingredient()
-        ingredientCourant.ingredient = tRecettes[i].ingredients[j].ingredient
+        ingredientCourant.name = tRecettes[i].ingredients[j].ingredient
         ingredientCourant.quantity = tRecettes[i].ingredients[j].quantity
         if (tRecettes[i].ingredients[j].unit === undefined) {
           ingredientCourant.unit = ''
@@ -724,6 +811,10 @@ function creerRecette (pId) {
   return recetteCourante
 }
 
+/*
+  Fonction CreerCarte prenant un paramètre.
+  - permet de créer et d'afficher la recette dans le DOM.
+*/
 function creerCarte (pId) {
   let ingredientCourant
   let bRecettePresente = false
@@ -794,7 +885,7 @@ function creerCarte (pId) {
 
   for (let i = 0; i < recetteCourante.tIngredient.length; i++) {
     ingredientCourant = new Ingredient()
-    ingredientCourant.ingredient = recetteCourante.tIngredient[i].ingredient
+    ingredientCourant.name = recetteCourante.tIngredient[i].name
     if (recetteCourante.tIngredient[i].quantity !== undefined) {
       ingredientCourant.quantity = recetteCourante.tIngredient[i].quantity
     }
@@ -804,11 +895,14 @@ function creerCarte (pId) {
     creerIngredient(ingredientCourant, recetteIngredient)
   }
 }
-
+/*
+  Fonction CreerIngredient prenant deux paramètres.
+  - permet d'afficher chaque ingredient dans le DOM sur la carte de la recette.
+*/
 function creerIngredient (pIngredientCourant, pDivAjout) {
   const recetteIngredient = document.createElement('p')
   recetteIngredient.classList.add('recette--detail--ingredient')
-  recetteIngredient.innerHTML = '<span class="font-weight-bold">' + pIngredientCourant.ingredient
+  recetteIngredient.innerHTML = '<span class="font-weight-bold">' + pIngredientCourant.name
   if (pIngredientCourant.quantity !== undefined) {
     recetteIngredient.innerHTML += ' : </span>' + pIngredientCourant.quantity
   }
