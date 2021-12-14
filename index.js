@@ -568,31 +568,31 @@ function rechercheRecette (pRecherche) {
   const eltAlert = document.getElementsByClassName('alert-warning')
   recherchePrincipal = pRecherche
   if (eltRecherche.length > 2) {
-    for (let i = 0; i < tRecettes.length; i++) {
-      eltRecettes = document.getElementsByClassName('recette')
-      if (eltRecettes.length === 0) {
-        eltAlert[0].style.display = 'block'
-      } else {
-        eltAlert[0].style.display = 'none'
-      }
-      for (let j = 0; j < tRecettes[i].ingredients.length; j++) {
-        if ((tRecettes[i].name.toLowerCase().indexOf(eltRecherche) !== -1) || (tRecettes[i].ingredients[j].ingredient.toLowerCase().indexOf(eltRecherche) !== -1) || (tRecettes[i].description.toLowerCase().indexOf(eltRecherche) !== -1)) {
+    eltRecettes = document.getElementsByClassName('recette')
+    if (eltRecettes.length === 0) {
+      eltAlert[0].style.display = 'block'
+    } else {
+      eltAlert[0].style.display = 'none'
+    }
+    tRecettes.forEach(recette => {
+      recette.ingredients.forEach(unIngredient => {
+        if ((recette.name.toLowerCase().indexOf(eltRecherche) !== -1) || (unIngredient.ingredient.toLowerCase().indexOf(eltRecherche) !== -1) || (recette.description.toLowerCase().indexOf(eltRecherche) !== -1)) {
           bTrouve = true
         }
-      }
+      })
       if (bTrouve) {
         bTrouve = false
-        recetteDejaAffiche = document.getElementById(tRecettes[i].id)
+        recetteDejaAffiche = document.getElementById(recette.id)
         if (recetteDejaAffiche === null) {
-          creerCarte(parseInt(tRecettes[i].id, 10))
+          creerCarte(parseInt(recette.id, 10))
         }
       } else {
-        recetteDejaAffiche = document.getElementById(tRecettes[i].id)
+        recetteDejaAffiche = document.getElementById(recette.id)
         if (recetteDejaAffiche !== null) {
-          supprimerCarte(parseInt(tRecettes[i].id, 10))
+          supprimerCarte(parseInt(recette.id, 10))
         }
       }
-    }
+    })
     actualiserFiltres('ingredient')
     actualiserFiltres('appareil')
     actualiserFiltres('ustensile')
@@ -606,9 +606,9 @@ function rechercheRecette (pRecherche) {
       rechercheFiltre('', 'appareil')
       rechercheFiltre('', 'ustensile')
     } else {
-      for (let e = 0; e < tTagsAffiches.length; e++) {
-        filtreTag(tTagsAffiches[e])
-      }
+      tTagsAffiches.forEach(tag => {
+        filtreTag(tag)
+      })
       supprimeRecettePasTag()
     }
   }
