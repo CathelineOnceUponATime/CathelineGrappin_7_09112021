@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/svg" sizes="16x16" href="./images/logo/Logo.svg"/>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" as="style">
+        <link rel="preload" href="./css/style.css" as="style" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="./css/style.css" />
+       
+        <meta name="description" content="Site Les Petits Plats - P7 - Formation Dev Front-End">
+        <meta name="author" content="Catheline GRAPPIN">
+
+        <title> Les Petits Plats</title>
+    </head>
+    <body>
+		<header>
+			<a><img src="./images/logo/Logo.svg" alt="logo Les Petits Plats"></a>
+			<p class="logo">Les petits plats</p>
+		</header>
+            <form onsubmit="return false">
+                <div class="input-recherche">
+                    <input type="text" id="barreRecherche" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+                    <i class="fas fa-search fa-2x"></i>
+                </div>
+                <div class="alert alert-warning" role="alert"> Aucune recette ne correspond à votre critère... vous pouvez chercher "tarte aux pommes", "poisson" etc. </div>
+                <div id="ensembleTag">
+                  <div class="tag ingredient">
+                    Lait de coco
+                    <button class="btn">
+                      <i class="far fa-times-circle"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="groupe-filtre">
+                    <div class="filtre-btn ingredient">
+                        <div class="btn-group">
+                            <button type="button" id="btnIngredient" class="btn btn-primary ingredient">
+                            Ingrédients
+                            </button>
+                            <button type="button" id="btnIngredientFleche" class="btn btn-primary dropdown-toggle dropdown-toggle-split ingredient" data-toggle="collapse" data-target="#collapseIngredient" aria-haspopup="true" aria-expanded="false" aria-controls="collapseIngredient">
+                                <span class="sr-only"> Ingrédients </span>
+                            </button>
+                        </div>
+                        <div class="collapse container" id="collapseIngredient" role="tabpanel" aria-expanded="true">
+                            <div class="row ingredient">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filtre-btn appareil">
+                        <div class="btn-group">
+                            <button type="button" id="btnAppareil" class="btn btn-primary appareil">
+                            Appareils
+                            </button>
+                            <button type="button" id="btnAppareilFleche" class="btn btn-primary dropdown-toggle dropdown-toggle-split appareil" data-toggle="collapse" data-target="#collapseAppareil" aria-haspopup="true" aria-expanded="false" aria-controls="collapseAppareil">
+                                <span class="sr-only"> Appareils </span>
+                            </button>
+                        </div>
+                        <div class="collapse" id="collapseAppareil">
+                            <div class="row sansMarge appareil">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filtre-btn ustensile">
+                        <div class="btn-group">
+                            <button type="button" id="btnUstensile" class="btn btn-primary ustensile">
+                            Ustensiles
+                            </button>
+                            <button type="button" id="btnUstensileFleche" class="btn btn-primary dropdown-toggle dropdown-toggle-split ustensile" data-toggle="collapse" data-target="#collapseUstensile" aria-haspopup="true" aria-expanded="false" aria-controls="collapseUstensile">
+                                <span class="sr-only"> Ustensiles </span>
+                            </button>
+                        </div>
+                        <div class="collapse" id="collapseUstensile">
+                            <div class="row sansMarge ustensile">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+            <div id="les-recettes">
+                <div class="recette" id="1">
+                  <div class="recette--photo"></div>
+                  <div class="recette--detail">
+                    <div class="recette-nom-temps">
+                      <p> Limonade de Coco </p>
+                      <p class="recette-nom-temps--temps">
+                        <i class="far fa-clock"></i>
+                        10 min
+                      </p>
+                    </div>
+                    <div class="recette-ingredient-quantite-unite-description">
+                      <div class="recette-ingredient-quantite-unite">
+                        <p class="recette--detail--ingredient">
+                          <span class="font-weight-bold">Lait de coco</span>
+                          : 400 ml
+                        </p>
+                      </div>
+                      <p class="recette-description">
+                        Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée
+                      </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+		<footer>
+
+		</footer>
+        <script type="module" src="./index.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        
+    </body>
+</html>
