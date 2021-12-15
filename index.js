@@ -642,11 +642,20 @@ idBarreRecherche.addEventListener('keypress', function (e) {
 function ajouteEvtInputFleche (pType) {
   const idFleche = document.getElementById('btn' + pType.charAt(0).toUpperCase() + pType.slice(1) + 'Fleche')
   const idFiltre = document.getElementById('btn' + pType.charAt(0).toUpperCase() + pType.slice(1) + '')
+  let input
   let idInput = document.getElementById('input' + pType.charAt(0).toUpperCase() + pType.slice(1) + '')
   idFleche.addEventListener('click', function () {
     idInput = document.getElementById('input' + pType.charAt(0).toUpperCase() + pType.slice(1) + '')
     if (idInput === null) {
-      idFiltre.innerHTML = '<input type="text" class="input ' + pType + '" id="input' + pType.charAt(0).toUpperCase() + pType.slice(1) + '">'
+      input = document.createElement('input')
+      input.id = 'input' + pType.charAt(0).toUpperCase() + pType.slice(1) + ''
+      input.classList.add('input')
+      input.classList.add(pType)
+      input.type = 'text'
+      idFiltre.innerHTML = ''
+      idFiltre.parentElement.insertBefore(input, idFleche)
+      input.style.borderRadius = '0'
+      idFiltre.style.width = '0%'
       idInput = document.getElementById('input' + pType.charAt(0).toUpperCase() + pType.slice(1) + '')
       if (pType === 'ingredient') {
         idInput.placeholder = 'Rechercher un ingrédient...'
@@ -675,6 +684,8 @@ function ajouteEvtInputFleche (pType) {
     } else {
       idFiltre.innerHTML = pType.charAt(0).toUpperCase() + pType.slice(1) + 's'
     }
+    idFiltre.parentElement.removeChild(idInput)
+    idFiltre.style.width = '90%'
     idFleche.style.transform = 'rotate(0deg)'
     rechercheFiltre('', pType)
   })
