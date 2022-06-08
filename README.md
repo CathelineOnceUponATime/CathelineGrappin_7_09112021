@@ -38,9 +38,9 @@ https://www.figma.com/file/xqeE1ZKlHUWi2Efo8r73NK/UI-Design-Les-Petits-Plats-FR
 
 - VSCode
 
-### Installing and launching Fisheye
+### Installing and launching Les Petits Plats
 
-Clone the repository of Fisheye :
+Clone the repository of Les Petits Plats :
 
 `git clone https://github.com/CathelineOnceUponATime/CathelineGrappin_7_09112021.git`
 
